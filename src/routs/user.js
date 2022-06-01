@@ -4,12 +4,20 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 const passwordValidator = require('password-validator');
 const path = require('path')
+const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
 
-app.use(
+router.use(cookieParser())
+router.use( // creating and connection express session
     session({
-      secret: 'you secret key',
-      saveUninitialized: true,
+      secret : 'secretkey',
+      key : 'seed',
+      cookie : {
+          httpOnly : true,
+          maxAge : null
+      },
+      store: MongoStore.create({ mongoUrl: 'mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority' })
     })
   )
 
@@ -67,19 +75,24 @@ router.get('/registration', (req, res) => {
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../src/web-page-source/secondaryPages/login.html'))
 }).post('/login', (req, res) => {
-    var username = req.body.username;
-    var password = req.body.password;
+    var username = req.body.login_username;
+    var password = req.body.login_password;
+
+    console.log(req.body)
 
     mongoClient.connect(async function(error, mongo) {
         let db = mongo.db('tempbase');
         let coll = db.collection('users');
         
         if (coll.find(username) && coll.find(password)) {
-            res.sendStatus(200)
-            req.session.username = req.body.username
-            console.log(req.session.username)
+            
+            res.redirect('/')
         };
     })    
+})
+
+router.get('/profile', (req, res) => { 
+    res.render('doctor')
 })
 
 module.exports = router

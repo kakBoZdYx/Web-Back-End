@@ -6,16 +6,18 @@ const path = require('path')
 const src = path.join(__dirname, '/src/web-page-source')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
 
 app.use(cookieParser())
-app.use(
+app.use( // creating and connection express session
     session({
       secret : 'secretkey',
       key : 'seed',
       cookie : {
           httpOnly : true,
           maxAge : null
-      }
+      },
+      store: MongoStore.create({ mongoUrl: 'mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority' })
     })
   )
 
