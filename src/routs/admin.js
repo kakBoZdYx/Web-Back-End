@@ -167,8 +167,19 @@ router.post('/user/editDocFin/:username', function(req, res) {
         res.redirect('/admin')
     })
         
-}); 
+});
 
+router.get('/user/deleteDoc/:username', function(req, res) {
+    let username = req.params.username;
+    console.log('Doctor ' + username + ' deleted successfully')
+    mongoClient.connect(async function(error, mongo) {
+        
+        let db = mongo.db('tempbase')
+        let coll = db.collection('doctors')
+        await coll.deleteOne({'username': username});
+        res.redirect('/admin')
+    })
+}); 
 
 
 
