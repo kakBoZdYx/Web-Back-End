@@ -38,8 +38,8 @@
       </table>
 
       <form action="/admin/user/add" method="POST" class = "admin-input">
-            <input name="name" placeholder="Имя" type="text" required>
-            <input name="username" type="text" placeholder="Никнейм">
+            <input name="name" placeholder="Имя" type="text" >
+            <input name="username" type="text" placeholder="Никнейм"required>
             <input name="city" type="text" placeholder="Город">
             <input name="password" type="text" placeholder="Пароль">
             <input name="email" type="text" placeholder="Email">
@@ -51,6 +51,7 @@
       <table class = "user-table" cellspacing=8>
             <tr>
                   <th>ФИО</th>
+                  <th>Никнейм</th>
                   <th>Отрасль</th>
                   <th>Ссылка на фото</th>
                   <th>Инстаграм</th>
@@ -59,19 +60,21 @@
             <% doctors.forEach(doctor => { %>
                   <tr>
                         <td> <%= doctor.fullname %></td>
+                        <td> <%= doctor.username %></td>
                         <td> <%= doctor.position %></td>
                         <td> <%= doctor.imagelink %></td>
                         <td> <%= doctor.instalink %></td>
                         <td> <%= doctor.otziv %></td>
-                        <td><a href="/user/delete/<%= doctor.username %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Удалить</button></td>
-                        <td><a href="/user/edit/<%= doctor.username %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Изменить</button></td>
+                        <td><a href="/admin/user/delete/<%= doctor.username %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Удалить</button></td>
+                        <td><a href="/admin/user/editDoc/<%= doctor.username %>"><button class = "delete-button">Изменить</button></td>
                   </tr>
             <% }) %>
             </div>
       </table>
 
       <form action="/admin/doctor/adddoctor" method="POST" class = "admin-input">
-            <input name="fullname" placeholder="ФИО" type="text" required>
+            <input name="fullname" placeholder="ФИО" type="text">
+            <input name="username" placeholder="Никнейм" type="text" required>
             <input name="imagelink" type="text" placeholder="Отрасль">
             <input name="position" type="text" placeholder="Ссылка на фото">
             <input name="instalink" type="text" placeholder="Ссылка на инсту">

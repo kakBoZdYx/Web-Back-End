@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Edit User</title>
+</head>
+<body>
+      <div class="signup">
+            <h1 class="registrationhead" >Editing doctor</h1>
+      </div>
+      <div class="signup">
+            <form action = "/admin/user/editDocFin/<%= user.username %>" method = "post" class="admin-input">
+                <h1 class="registrationhead">Registration</h1>
+                <span>ФИО</span><input class="emailinput" type="text" name="fullname" value="<%= user.fullname %>" placeholder="<%= user.name %>" id="name" >
+                <span>Никнейм</span><input class="emailinput" type="text" name="username" value="<%= user.username %>" placeholder="<%= user.username %>" id="username" >
+                <span>Отрасль</span><input class="emailinput" type="text" name="position" value="<%= user.position %>"  placeholder="<%= user.position %>" id="password" >
+                <span>Фото</span><input type="text" name="imagelink" value="<%= user.imagelink %>" placeholder="<%= user.imagelink %>" id="city" >
+                <span>Инстаграм</span><input type="text" name="instalink" value="<%= user.instalink %>" placeholder="<%= user.instalink %>" id="email" >
+                <span>Отзыв</span><input type="text" name="otziv" value="<%= user.otziv %>" placeholder="<%= user.otziv %>" id="email" >
+                <input type="submit" name="button" class="registerbutton" value = "Update">
+            </form>
+      </div>
+</table>
+</body>
+</html>
