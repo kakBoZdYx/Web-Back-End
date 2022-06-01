@@ -89,6 +89,7 @@
   border-radius: 20px;
 }
 
+
 .registerbutton:hover {
   cursor: pointer;
   position: relative;
@@ -108,8 +109,8 @@
   width: 80%;
   text-align: left;
   margin: auto;
-  background-color: #ececec;
   padding: 20px;
+  background-color: #ececec;
   border-radius: 20px;
 }
 

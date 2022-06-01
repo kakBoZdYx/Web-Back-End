@@ -42,9 +42,22 @@ router.get('/user/delete/:name', function(req, res) {
         let db = mongo.db('tempbase')
         let coll = db.collection('users')
         await coll.deleteOne({name: name});
-        res.send('User ' + name + ' deleted successfully')
+        res.redirect('/admin')
     })
 }); 
+
+
+router.get('/user/edit/:name', function(req, res) {
+    let name = req.params.name;
+		console.log(name)
+		mongoClient.connect(async function(error, mongo) {
+			
+			let db = mongo.db('tempbase')
+			let coll = db.collection('users')
+			let user = await coll.findOne({name: name});
+			res.render('edit', {user});
+		})
+})
 
 router.post('/user/add', function(req, res) { 
     console.log('User added successfully');
@@ -69,8 +82,49 @@ router.post('/user/add', function(req, res) {
         
         await coll.insertOne(tempdata);
     });
-    res.send(200);
+    res.redirect('/admin')
+}); 
+
+router.post('/user/editFin/:name', function(req, res) {
+    let namee = req.params.name;
+    console.log(req.body.name)
+    mongoClient.connect(async function(error, mongo) {
+        
+        let db = mongo.db('tempbase')
+        let coll = db.collection('users')
+        await coll.updateOne({name: namee}, {$set: {name: req.body.name, password:req.body.password, username: req.body.username, email: req.body.email, city:req.body.city}})
+        res.redirect('/admin')
+    })
         
 }); 
+
+
+router.post('/doctor/adddoctor', function(req, res) {
+    var fullname = req.body.fullname;
+    var imagelink = req.body.imagelink;
+    var position = req.body.position;
+    var instalink = req.body.instalink;
+    var otziv = req.body.otziv;
+
+    var tempdata = {
+        "fullname" : fullname,
+        "imagelink" : imagelink,
+        "position" : position,
+        "instalink" : instalink,
+        "otziv" : otziv
+    }
+    mongoClient.connect(async function(error, mongo) {
+        let db = mongo.db('tempbase');
+        let coll = db.collection('doctors');
+        
+        await coll.insertOne(tempdata);
+    });
+    res.send(200);
+        
+})
+
+
+
+
 
 module.exports = router

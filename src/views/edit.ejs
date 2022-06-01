@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signup/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Edit User</title>
 </head>
 <body>
@@ -12,14 +12,14 @@
             <h1 class="registrationhead" >Editing user</h1>
       </div>
       <div class="signup">
-            <form action = "/user/editFin/<%= user.name %>" method = "get">
+            <form action = "/admin/user/editFin/<%= user.name %>" method = "post" class="admin-input">
                 <h1 class="registrationhead">Registration</h1>
-                <span>Name</span><input class="emailinput" type="text" name="name" value="" placeholder="<%= user.name %>" id="name" >
-                <span>Username</span><input class="emailinput" type="text" name="username" value="" placeholder=" <%= user.username %>" id="username" >
-                <span>Password</span><input class="emailinput" type="password" name="password" value="" placeholder="<%= user.password %>" id="password" >
-                <input class="emailinput" type="text" name="city" value="" placeholder="<%= user.city %>" id="city" >
-                <input class="emailinput" type="text" name="email" value="" placeholder="<%= user.email %>" id="email" >
-                <input type="submit" name="button" class="registerbutton" value = "Update" href = "/user/editFin/<%= user.name %>">
+                <span>Name</span><input class="emailinput" type="text" name="name" value="<%= user.name %>" placeholder="<%= user.name %>" id="name" >
+                <span>Username</span><input class="emailinput" type="text" name="username" value="<%= user.username %>" placeholder="<%= user.username %>" id="username" >
+                <span>Password</span><input class="emailinput" type="text" name="password" value="<%= user.password %>"  placeholder="<%= user.password %>" id="password" >
+                <span>City</span><input type="text" name="city" value="<%= user.city %>" placeholder="<%= user.city %>" id="city" >
+                <span>Email</span><input type="text" name="email" value="<%= user.email %>" placeholder="<%= user.email %>" id="email" >
+                <input type="submit" name="button" class="registerbutton" value = "Update">
             </form>
       </div>
 </table>
