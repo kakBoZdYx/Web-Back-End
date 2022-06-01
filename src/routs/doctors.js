@@ -42,7 +42,7 @@ router.get('/', (req, res) => {
         let db = mongo.db('tempbase');
         let doccoll = db.collection('doctors');
         let doctors = await doccoll.find().toArray();
-        res.render('doctor', {doctors});
+        res.render('doctors', {doctors});
     });
 })
 

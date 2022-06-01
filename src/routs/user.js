@@ -47,7 +47,7 @@ router.get('/registration', (req, res) => {
         var name = req.body.name;
         var surname = req.body.surname;
         var datentime = new Date();
-        var photo_prof = req.body.profile_photo
+        var photo_prof = req.body.monster;
     
         var tempdata = {
             "username" : username,
