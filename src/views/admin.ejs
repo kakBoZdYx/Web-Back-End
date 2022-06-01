@@ -9,41 +9,66 @@
 </head>
 <body>
       <div class="signup">
-            <h1 class="registrationhead" >Welcome to admin profile</h1>
+      <h1 class="registrationhead" >Welcome to admin profile</h1>
       </div>
       <table class = "user-table" cellspacing=8>
-      <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>City</th>
-            <th>Last Time</th>
-            <th>Password</th>
-      </tr>
-      <div>
-      <% users.forEach(user => { %>
             <tr>
-                  <td> <%= user.name %></td>
-                  <td> <%= user.username %></td>
-                  <td> <%= user.city %></td>
-                  <td> <%= user.last_time %></td>
-                  <td> <%= user.password %></td>
-                  <td><a href="/user/delete/<%= user.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Delete</button></td>
-                  <td><a href="/user/edit/<%= user.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Edit</button></td>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>City</th>
+                  <th>Last Time</th>
+                  <th>Password</th>
             </tr>
-      <% }) %>
-      </div>
+            <div>
+            <% users.forEach(user => { %>
+                  <tr>
+                        <td> <%= user.name %></td>
+                        <td> <%= user.username %></td>
+                        <td> <%= user.city %></td>
+                        <td> <%= user.last_time %></td>
+                        <td> <%= user.password %></td>
+                        <td><a href="/admin/user/delete/<%= user.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Delete</button></td>
+                        <td><a href="/admin/user/edit/<%= user.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Edit</button></td>
+                  </tr>
+            <% }) %>
+            </div>
+      </table>
 
-      <form action="/user/add" method="POST" class = "admin-form">
-            <input class="admin-input" name="name" placeholder="Name" type="text" required>
-            <input class="admin-input" name="username" type="text" placeholder="username">
-            <input class="admin-input" name="city" type="text" placeholder="city">
-            <input class="admin-input" name="password" type="text" placeholder="password">
-            <input class="admin-input" name="email" type="text" placeholder="email">
-            <input class="admin-registerbutton" type="submit" type="text" value = "Submit" href="/user/add">
+      <form action="/admin/user/add" method="POST" class = "admin-input">
+            <input name="name" placeholder="Name" type="text" required>
+            <input name="username" type="text" placeholder="username">
+            <input name="city" type="text" placeholder="city">
+            <input name="password" type="text" placeholder="password">
+            <input name="email" type="text" placeholder="email">
+            <button type="submit" href="/admin/user/add">Submit</button>
       </form>
-      
-      <a href="/doctor/add-doctor"><button action="/doctor/adddoctor" method="POST" class="delete-button">Add Doctor</button></a>
 
-</table>
+      <h1 class="registrationhead" >Doctors table</h1>
+
+      <table class = "user-table" cellspacing=8>
+            <tr>
+                  <th>Fullname</th>
+                  <th>Position</th>
+                  <th>Image</th>
+            <div>
+            <% doctors.forEach(doctor => { %>
+                  <tr>
+                        <td> <%= doctor.fullname %></td>
+                        <td> <%= doctor.position %></td>
+                        <td> <%= doctor.imagelink %></td>
+                        <td><a href="/user/delete/<%= doctor.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Delete</button></td>
+                        <td><a href="/user/edit/<%= doctor.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Edit</button></td>
+                  </tr>
+            <% }) %>
+            </div>
+      </table>
+
+      <form action="/doctor/adddoctor" method="POST" class = "admin-input">
+            <input name="name" placeholder="Fullname" type="text" required>
+            <input name="username" type="text" placeholder="Position">
+            <input name="city" type="text" placeholder="Imagelink">
+            <button type="submit" href="/doctor/adddoctor">Add doctor</button>
+      </form>
+      <!-- <a href="/doctor/add-doctor"><button action="/doctor/adddoctor" method="POST" class="doctor-button">Add Doctor</button></a> -->
 </body>
 </html>
