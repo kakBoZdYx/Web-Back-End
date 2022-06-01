@@ -115,7 +115,7 @@ router.get('/profile', (req, res) => {
         var userData = req.session.user
         res.render('profile', {userData})
     } else {
-        res.redirect('/user/register')
+        res.redirect('/user/login')
     }
 })
 
