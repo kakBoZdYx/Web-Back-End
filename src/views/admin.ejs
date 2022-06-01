@@ -65,7 +65,7 @@
                         <td> <%= doctor.imagelink %></td>
                         <td> <%= doctor.instalink %></td>
                         <td> <%= doctor.otziv %></td>
-                        <td><a href="/admin/user/delete/<%= doctor.username %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Удалить</button></td>
+                        <td><a href="/admin/user/deleteDoc/<%= doctor.username %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Удалить</button></td>
                         <td><a href="/admin/user/editDoc/<%= doctor.username %>"><button class = "delete-button">Изменить</button></td>
                   </tr>
             <% }) %>
