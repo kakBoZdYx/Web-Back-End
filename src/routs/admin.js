@@ -65,17 +65,30 @@ router.get('/user/delete/:username', function(req, res) {
 }); 
 
 
-router.get('/user/edit/:name', function(req, res) {
+router.get('/user/edit/:username', function(req, res) {
     let username = req.params.username;
 		console.log(username)
 		mongoClient.connect(async function(error, mongo) {
 			
 			let db = mongo.db('tempbase')
 			let coll = db.collection('users')
-			let user = await coll.findOne({name: username});
+			let user = await coll.findOne({'username': username});
 			res.render('edit', {user});
 		})
 })
+
+router.post('/user/editFin/:username', function(req, res) {
+    let namee = req.params.username;
+    console.log(req.body.username)
+    mongoClient.connect(async function(error, mongo) {
+        
+        let db = mongo.db('tempbase')
+        let coll = db.collection('users')
+        await coll.updateOne({username: namee}, {$set: {name: req.body.name, password:req.body.password, username: req.body.username, email: req.body.email, city:req.body.city}})
+        res.redirect('/admin')
+    })
+        
+}); 
 
 router.post('/user/add', function(req, res) { 
     console.log('User added successfully');
@@ -103,22 +116,11 @@ router.post('/user/add', function(req, res) {
     res.redirect('/admin')
 }); 
 
-router.post('/user/editFin/:name', function(req, res) {
-    let namee = req.params.name;
-    console.log(req.body.name)
-    mongoClient.connect(async function(error, mongo) {
-        
-        let db = mongo.db('tempbase')
-        let coll = db.collection('users')
-        await coll.updateOne({name: namee}, {$set: {name: req.body.name, password:req.body.password, username: req.body.username, email: req.body.email, city:req.body.city}})
-        res.redirect('/admin')
-    })
-        
-}); 
 
 
 router.post('/doctor/adddoctor', function(req, res) {
     var fullname = req.body.fullname;
+    var username = req.body.username;
     var imagelink = req.body.imagelink;
     var position = req.body.position;
     var instalink = req.body.instalink;
@@ -126,6 +128,7 @@ router.post('/doctor/adddoctor', function(req, res) {
 
     var tempdata = {
         "fullname" : fullname,
+        "username" : username,
         "imagelink" : imagelink,
         "position" : position,
         "instalink" : instalink,
@@ -137,9 +140,35 @@ router.post('/doctor/adddoctor', function(req, res) {
         
         await coll.insertOne(tempdata);
     });
-    res.send(200);
+    res.redirect('/admin')
         
 })
+
+router.get('/user/editDoc/:username', function(req, res) {
+    let username = req.params.username;
+		console.log(username)
+		mongoClient.connect(async function(error, mongo) {
+			
+			let db = mongo.db('tempbase')
+			let coll = db.collection('doctors')
+			let user = await coll.findOne({'username': username});
+			res.render('editdoctor', {user});
+		})
+})
+
+router.post('/user/editDocFin/:username', function(req, res) {
+    let namee = req.params.username;
+    console.log(req.body.username)
+    mongoClient.connect(async function(error, mongo) {
+        
+        let db = mongo.db('tempbase')
+        let coll = db.collection('doctors')
+        await coll.updateOne({'username': namee}, {$set: {'fullname': req.body.fullname, 'position':req.body.position, username: req.body.username, imagelink: req.body.imagelink, instalink:req.body.instalink, otziv: req.body.otziv}})
+        res.redirect('/admin')
+    })
+        
+}); 
+
 
 
 

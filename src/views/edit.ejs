@@ -12,7 +12,7 @@
             <h1 class="registrationhead" >Editing user</h1>
       </div>
       <div class="signup">
-            <form action = "/admin/user/editFin/<%= user.name %>" method = "post" class="admin-input">
+            <form action = "/admin/user/editFin/<%= user.username %>" method = "post" class="admin-input">
                 <h1 class="registrationhead">Registration</h1>
                 <span>Name</span><input class="emailinput" type="text" name="name" value="<%= user.name %>" placeholder="<%= user.name %>" id="name" >
                 <span>Username</span><input class="emailinput" type="text" name="username" value="<%= user.username %>" placeholder="<%= user.username %>" id="username" >
