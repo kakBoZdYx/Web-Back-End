@@ -32,6 +32,7 @@ var schema = new passwordValidator(); //schema for password
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
 
 const { MongoClient, ServerApiVersion } = require('mongodb');//MongoDb Connection
+const { profile } = require('console');
 const uri = "mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority"; 
 const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -47,7 +48,7 @@ router.get('/registration', (req, res) => {
         var name = req.body.name;
         var surname = req.body.surname;
         var datentime = new Date();
-        var photo_prof = req.body.profile_photo
+        var monster = req.body.monster
     
         var tempdata = {
             "username" : username,
@@ -58,7 +59,7 @@ router.get('/registration', (req, res) => {
             "email" : email,
             "role" : "user",
             "last_time" : datentime,
-            "photo_url" : photo_prof
+            "photo_url" : monster
         }
         mongoClient.connect(async function(error, mongo) {
             let db = mongo.db('tempbase');
@@ -90,13 +91,13 @@ router.get('/login', (req, res) => {
         if(await coll.findOne({"username" : username})){
             if((await coll.findOne({"username" : username})).password == password) {
                 req.session.auth = true
-                req.session.username = username
+                req.session.user = userData
                 req.session.userrole = (await coll.findOne({"username" : username})).role
                 
                 if(req.session.userrole == 'admin'){
                     res.redirect('/admin')
                 } else {
-                    res.render('profile', {userData})
+                    res.redirect('/user/profile')
                 }
             } else {
                 req.session.auth = false
@@ -107,6 +108,21 @@ router.get('/login', (req, res) => {
             res.sendStatus(200)
         }
     })    
+})
+
+router.get('/profile', (req, res) => {
+    if(req.session.auth == true) {
+        var userData = req.session.user
+        res.render('profile', {userData})
+    } else {
+        res.redirect('/user/register')
+    }
+})
+
+router.get('/logout', (req, res) => {
+    req.session.destroy()
+    console.log('21312312')
+    res.redirect('/')
 })
 
 router.get('/test', (req, res) => {
@@ -123,5 +139,6 @@ router.get('/test', (req, res) => {
 
     res.sendStatus(200)
 })
+
 
 module.exports = router
