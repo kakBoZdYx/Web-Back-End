@@ -4,7 +4,22 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 const passwordValidator = require('password-validator');
 const path = require('path')
-const src = path.join(__dirname, '/src/web-page-source')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+
+app.use(cookieParser())
+app.use( // creating and connection express session
+    session({
+      secret : 'secretkey',
+      key : 'seed',
+      cookie : {
+          httpOnly : true,
+          maxAge : null
+      },
+      store: MongoStore.create({ mongoUrl: 'mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority' })
+    })
+  )
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
@@ -14,7 +29,6 @@ router.use(express.static('site'))
 router.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, './src/views/'));
-router.use(express.static(src))
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()

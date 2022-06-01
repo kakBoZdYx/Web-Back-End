@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Доктора | DenSay’lyq</title>
 
-    <link rel="icon" type="image/x-icon" href="css/index-page/img/logo.png">
+    <link rel="icon" type="image/x-icon" href="../img/logo.png">
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="doctor-page/style-doc.css">
+    <link rel="stylesheet" href="../css/style-doc.css">
 
 </head>
 <body>
@@ -20,7 +20,7 @@
 <!-- header section starts  -->
 
 <header>
-    <a href="/#" class="logo"><img src="css/index-page/img/logo.png" alt=""></a>
+    <a href="/#" class="logo"><img src="../img/logo.png" alt=""></a>
 
     <ul class="navbar">
         <li><a href="/to-index">Главная</a></li>
@@ -43,7 +43,7 @@
 <section class="home" id="home">
 
     <div class="image">
-        <img src="images/image-doc/doctor.png" alt="">
+        <img src="../img/image-doc/doctor.png" alt="">
     </div>
 
     <div class="content">
@@ -68,7 +68,7 @@
     <div class="row">
 
         <div class="image">
-            <img src="images/image-doc/about-img.svg" alt="">
+            <img src="../img/image-doc/about-img.svg" alt="">
         </div>
 
         <div class="content">
@@ -92,7 +92,7 @@
 
     <div class="box-container">
 
-        <% doctors.forEach(doctor => { %>
+        <% doctor.forEach(doctor => { %>
             <div class="box">
                 <img src="<%= doctor.imagelink %>" alt="">
                 <h3><%= doctor.fullname %></h3>
@@ -195,7 +195,7 @@
     <div class="box-container">
 
         <div class="box">
-            <img src="images/image-doc/бегемот.png" alt="">
+            <img src="../img/image-doc/бегемот.png" alt="">
             <h3>Мистер Бегемот</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -208,7 +208,7 @@
         </div>
 
         <div class="box">
-            <img src="images/image-doc/овца.png" alt="">
+            <img src="../img/image-doc/овца.png" alt="">
             <h3>Мисс Овечка</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -221,7 +221,7 @@
         </div>
 
         <div class="box">
-            <img src="images/image-doc/панда.png" alt="">
+            <img src="../img/image-doc/панда.png" alt="">
             <h3>Мистер По</h3>
             <div class="stars">
                 <i class="fas fa-star"></i>
@@ -244,7 +244,7 @@
 
 
 <!-- custom js file link  -->
-<script src="/javascript/script-doc.js"></script>
+<script src="../js/script-doc.js"></script>
 
 </body>
 </html>
