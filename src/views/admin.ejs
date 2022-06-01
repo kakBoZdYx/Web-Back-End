@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Admin Page</title>
+</head>
+<body>
+      <div class="signup">
+            <h1 class="registrationhead" >Welcome to admin profile</h1>
+      </div>
+      <table class = "user-table" cellspacing=8>
+      <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>City</th>
+            <th>Last Time</th>
+            <th>Password</th>
+      </tr>
+      <div>
+      <% users.forEach(user => { %>
+            <tr>
+                  <td> <%= user.name %></td>
+                  <td> <%= user.username %></td>
+                  <td> <%= user.city %></td>
+                  <td> <%= user.last_time %></td>
+                  <td> <%= user.password %></td>
+                  <td><a href="/user/delete/<%= user.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Delete</button></td>
+                  <td><a href="/user/edit/<%= user.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Edit</button></td>
+            </tr>
+      <% }) %>
+      </div>
+
+      <form action="/user/add" method="POST" class = "admin-form">
+            <input class="admin-input" name="name" placeholder="Name" type="text" required>
+            <input class="admin-input" name="username" type="text" placeholder="username">
+            <input class="admin-input" name="city" type="text" placeholder="city">
+            <input class="admin-input" name="password" type="text" placeholder="password">
+            <input class="admin-input" name="email" type="text" placeholder="email">
+            <input class="admin-registerbutton" type="submit" type="text" value = "Submit" href="/user/add">
+      </form>
+      
+      <a href="/doctor/add-doctor"><button action="/doctor/adddoctor" method="POST" class="delete-button">Add Doctor</button></a>
+
+</table>
+</body>
+</html>
