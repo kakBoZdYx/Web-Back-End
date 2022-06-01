@@ -8,15 +8,13 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 
-app.use(cookieParser())
-app.use( // creating and connection express session
+router.use(cookieParser())
+router.use( // creating and connection express session
     session({
-      secret : 'secretkey',
-      key : 'seed',
-      cookie : {
-          httpOnly : true,
-          maxAge : null
-      },
+        secret: 'my key',
+        resave: 'true',
+        key : 'sid',
+        saveUninitialized: 'false',
       store: MongoStore.create({ mongoUrl: 'mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority' })
     })
   )
@@ -30,8 +28,7 @@ router.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, './src/views/'));
 
-var schema = new passwordValidator(); //schema for password 
-schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
+
 
 const { MongoClient, ServerApiVersion } = require('mongodb');//MongoDb Connection
 const uri = "mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority"; 
