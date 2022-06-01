@@ -27,9 +27,6 @@
   border-radius: 20px;
 }
 
-.signup {
-}
-
 .registrationhead{
   position:relative;
   margin: 20px auto;
@@ -525,8 +522,6 @@ header {
  margin-bottom:0;
 }
 
-#form{
-}
 .form__group{
     display: flex;
     flex-direction: column;
@@ -581,8 +576,6 @@ header {
   outline: none;
   border-bottom: 1px solid #008148;
   padding: 0px 8px; */
-}
-.form__group option{
 }
 
 .form__group button {
@@ -711,11 +704,11 @@ header {
 }
 
 #map{
-  position relative;
+  position : relative;
   left: 30px;
   top: -270px;
   width: 150px;
-  length: 100px;
+  height: 100px;
 }
 
 .contact{
@@ -839,7 +832,7 @@ header {
 }
 
 .contact .content .text .social a span{
-	color:#fffff;
+	color:white;
 	font-size: 20px;
 }
 
