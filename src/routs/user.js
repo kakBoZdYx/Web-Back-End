@@ -64,10 +64,10 @@ router.get('/registration', (req, res) => {
             
             if (schema.validate(password) == true) {       
                 await coll.insertOne(tempdata);
-                res.sendFile('../../src/web-page-source/secondaryPages/registrationPages/registrationsucces.html' , { root : __dirname});
+                res.send(200);
             }
             else {
-                res.sendFile('../../src/web-page-source/secondaryPages/registrationPages/registrationfail.html' , { root : __dirname});
+                res.send(200);            
             }
         });
 })

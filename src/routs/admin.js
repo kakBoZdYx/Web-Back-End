@@ -52,27 +52,27 @@ router.get('/', (req, res) => {
     }
 })
 
-router.get('/user/delete/:name', function(req, res) {
-    let name = req.params.name;
-    console.log('User ' + name + ' deleted successfully')
+router.get('/user/delete/:username', function(req, res) {
+    let username = req.params.username;
+    console.log('User ' + username + ' deleted successfully')
     mongoClient.connect(async function(error, mongo) {
         
         let db = mongo.db('tempbase')
         let coll = db.collection('users')
-        await coll.deleteOne({name: name});
+        await coll.deleteOne({'username': username});
         res.redirect('/admin')
     })
 }); 
 
 
 router.get('/user/edit/:name', function(req, res) {
-    let name = req.params.name;
-		console.log(name)
+    let username = req.params.username;
+		console.log(username)
 		mongoClient.connect(async function(error, mongo) {
 			
 			let db = mongo.db('tempbase')
 			let coll = db.collection('users')
-			let user = await coll.findOne({name: name});
+			let user = await coll.findOne({name: username});
 			res.render('edit', {user});
 		})
 })
