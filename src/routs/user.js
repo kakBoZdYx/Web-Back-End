@@ -11,12 +11,9 @@ const MongoStore = require('connect-mongo')
 router.use(cookieParser())
 router.use( // creating and connection express session
     session({
-      secret : 'secretkey',
-      key : 'seed',
-      cookie : {
-          httpOnly : true,
-          maxAge : null
-      },
+        secret: 'my key',
+        resave: 'false',
+        saveUninitialized: 'false',
       store: MongoStore.create({ mongoUrl: 'mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority' })
     })
   )
@@ -75,24 +72,43 @@ router.get('/registration', (req, res) => {
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../src/web-page-source/secondaryPages/login.html'))
 }).post('/login', (req, res) => {
-    var username = req.body.login_username;
-    var password = req.body.login_password;
 
-    console.log(req.body)
+    req.session.lgusername = req.body.login_username;
+    req.session.lgpassword = req.body.login_password;
 
     mongoClient.connect(async function(error, mongo) {
         let db = mongo.db('tempbase');
         let coll = db.collection('users');
+
+        console.log(await coll.findOne({username : req.session.lgusername}).password)
         
-        if (coll.find(username) && coll.find(password)) {
-            
-            res.redirect('/')
-        };
+        if(await coll.findOne({username : req.session.lgusername}) == true){
+            if(await coll.findOne({username : req.session.lgusername}).password == req.session.lgpassword) {
+                req.session.auth = true
+                console.log(req.session.auth)
+                res.sendStatus(200)
+            } else {
+                req.session.auth = false
+                console.log(req.session.auth)
+                res.sendStatus(200)
+            }
+        } else {
+            req.session.auth = false
+            console.log(req.session.auth)
+            res.sendStatus(200)
+        }
+        console.log(await coll.findOne({username : req.session.lgusername}).password + " " + password)
+        console.log(await coll.findOne({username : req.session.lgusername}) + " " + username)
     })    
 })
 
 router.get('/profile', (req, res) => { 
     res.render('profile')
+})
+
+router.get('/test', (req, res) => {
+    req.session.testsession = false
+    res.sendStatus(200)
 })
 
 module.exports = router
