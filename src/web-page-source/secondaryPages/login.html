@@ -35,17 +35,15 @@
                 <input type="submit" name="button" class="registerbutton" value = "Log in">
             </form>
       </div> -->
-      <div class="signup">
-            <form action = "/user/registration" method = "post">
-                <h1 class="registrationhead">Регистрация</h1>
-                <input class="emailinput" type="text" name="username" value="" placeholder="Логин" id="username" required>
-                <input class="emailinput" type="password" name="password" value="" placeholder="Пароль" id="password" required>
-                <input class="emailinput" type="text" name="name" value="" placeholder="Имя" id="name">
-                <input class="emailinput" type="text" name="city" value="" placeholder="Город" id="city">
-                <input class="emailinput" type="text" name="email" value="" placeholder="Email" id="email">
-                <input type="submit" name="button" class="registerbutton" value = "Вход">
-            </form>
-      </div>
+
+    <div class="signup">
+        <form action = "/login" method = "post">
+            <h1 class="registrationhead">Вход</h1>
+            <input class="emailinput" type="text" name="login_username" value="" placeholder="Логин" id="username" required>
+            <input class="emailinput" type="password" name="login_password" value="" placeholder="Пароль" id="password" required>
+            <input type="submit" name="button" class="registerbutton" value = "Войти">
+        </form>
+    </div>
   </div>
 </body>
 </html>
