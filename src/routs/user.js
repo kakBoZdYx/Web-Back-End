@@ -45,16 +45,18 @@ router.get('/registration', (req, res) => {
         var email = req.body.email;
         var city = req.body.city;
         var name = req.body.name;
+        var surname = req.body.surname;
         var datentime = new Date();
     
         var tempdata = {
             "username" : username,
             "password" : password,
-            "last_time" : datentime,
             "name" : name,
+            "surname" : surname,
             "city" : city,
             "email" : email,
-            "role" : "user"
+            "role" : "user",
+            "last_time" : datentime
         }
         mongoClient.connect(async function(error, mongo) {
             let db = mongo.db('tempbase');
@@ -81,7 +83,7 @@ router.get('/login', (req, res) => {
         let db = mongo.db('tempbase');
         let coll = db.collection('users');
 
-        var logintemp = await coll.findOne({"username" : username})
+        var userData = await coll.findOne({"username" : username})
 
         console.log((await coll.findOne({"username" : username})).password)
         
@@ -95,7 +97,7 @@ router.get('/login', (req, res) => {
                 if(req.session.userrole == 'admin'){
                     res.redirect('/admin')
                 } else {
-                    res.render('profile', )
+                    res.render('profile', {userData})
                 }
             } else {
                 req.session.auth = false
@@ -110,10 +112,6 @@ router.get('/login', (req, res) => {
             console.log(`23`)
         }
     })    
-})
-
-router.get('/profile', (req, res) => { 
-    res.render('profile')
 })
 
 router.get('/test', (req, res) => {

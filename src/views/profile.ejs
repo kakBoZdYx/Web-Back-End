@@ -22,7 +22,7 @@
       <div class="bx bx-menu" id="menu-icon"></div>
 
       <ul class="navbar">
-          <li><a href="/index">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="#shop">Services</a></li>
           <li><a href="#delivery">About</a></li>
           <li><a href="#app">Plans</a></li>
@@ -70,8 +70,8 @@
         <!-- ===== ===== User Details Sections ===== ===== -->
         <section class="userDetails card">
             <div class="userName">
-                <h1 class="name">Almira </h1>
-                <div class="map">
+                <h1 class="name"><%= userData.name%></h1>
+                 <div class="map">
                     <i class="ri-map-pin-fill ri"></i>
                     <span>Astana, KZ</span>
                 </div>
@@ -130,8 +130,8 @@
                 <h1 class="heading">Contact Information</h1>
                 <ul>
                     <li class="phone">
-                        <h1 class="label">e-mail:</h1>
-                        <span class="info">211376@astanait.edu.kz</span>
+                        <h1 class="label">Почта : </h1>
+                        <span class="info"><%= userData.email%></span>
                     </li>
 
 
