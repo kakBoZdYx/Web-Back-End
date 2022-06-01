@@ -26,7 +26,49 @@ router.get('/', (req, res) => {
         let db = mongo.db('tempbase');
         let coll = db.collection('users');
         let users = await coll.find().toArray();
-        res.render('admin', {users});
+        let doccoll = db.collection('doctors');
+        let doctors = await doccoll.find().toArray();
+        res.render('admin', {users, doctors});
     });
 })
+
+router.get('/user/delete/:name', function(req, res) {
+    let name = req.params.name;
+    console.log('User ' + name + ' deleted successfully')
+    mongoClient.connect(async function(error, mongo) {
+        
+        let db = mongo.db('tempbase')
+        let coll = db.collection('users')
+        await coll.deleteOne({name: name});
+        res.send('User ' + name + ' deleted successfully')
+    })
+}); 
+
+router.post('/user/add', function(req, res) { 
+    console.log('User added successfully');
+    var username = req.body.username;
+    var password = req.body.password;
+    var email = req.body.email;
+    var city = req.body.city;
+    var name = req.body.name;
+    var datentime = new Date();
+
+    var tempdata = {
+        "username" : username,
+        "password" : password,
+        "last_time" : datentime,
+        "name" : name,
+        "city" : city,
+        "email" : email
+    }
+    mongoClient.connect(async function(error, mongo) {
+        let db = mongo.db('tempbase');
+        let coll = db.collection('users');
+        
+        await coll.insertOne(tempdata);
+    });
+    res.send(200);
+        
+}); 
+
 module.exports = router
