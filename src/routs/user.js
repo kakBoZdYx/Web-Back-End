@@ -47,6 +47,7 @@ router.get('/registration', (req, res) => {
         var name = req.body.name;
         var surname = req.body.surname;
         var datentime = new Date();
+        var photo_prof = req.body.profile_photo
     
         var tempdata = {
             "username" : username,
@@ -56,7 +57,8 @@ router.get('/registration', (req, res) => {
             "city" : city,
             "email" : email,
             "role" : "user",
-            "last_time" : datentime
+            "last_time" : datentime,
+            "photo_url" : photo_prof
         }
         mongoClient.connect(async function(error, mongo) {
             let db = mongo.db('tempbase');
@@ -84,15 +86,12 @@ router.get('/login', (req, res) => {
         let coll = db.collection('users');
 
         var userData = await coll.findOne({"username" : username})
-
-        console.log((await coll.findOne({"username" : username})).password)
         
         if(await coll.findOne({"username" : username})){
             if((await coll.findOne({"username" : username})).password == password) {
                 req.session.auth = true
                 req.session.username = username
                 req.session.userrole = (await coll.findOne({"username" : username})).role
-                console.log(req.session.auth)
                 
                 if(req.session.userrole == 'admin'){
                     res.redirect('/admin')
@@ -101,15 +100,11 @@ router.get('/login', (req, res) => {
                 }
             } else {
                 req.session.auth = false
-                console.log(req.session.auth)
                 res.sendStatus(200)
-                console.log(`12`)
             }
         } else {
             req.session.auth = false
-            console.log(req.session.auth)
             res.sendStatus(200)
-            console.log(`23`)
         }
     })    
 })
