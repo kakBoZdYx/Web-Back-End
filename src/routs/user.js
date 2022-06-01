@@ -4,7 +4,14 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 const passwordValidator = require('password-validator');
 const path = require('path')
-const src = path.join(__dirname, '/src/web-page-source')
+const session = require('express-session')
+
+app.use(
+    session({
+      secret: 'you secret key',
+      saveUninitialized: true,
+    })
+  )
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
@@ -14,7 +21,6 @@ router.use(express.static('site'))
 router.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, './src/views/'));
-router.use(express.static(src))
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
@@ -56,6 +62,24 @@ router.get('/registration', (req, res) => {
                 res.sendFile('../../src/web-page-source/secondaryPages/registrationPages/registrationfail.html' , { root : __dirname});
             }
         });
+})
+
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../src/web-page-source/secondaryPages/login.html'))
+}).post('/login', (req, res) => {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    mongoClient.connect(async function(error, mongo) {
+        let db = mongo.db('tempbase');
+        let coll = db.collection('users');
+        
+        if (coll.find(username) && coll.find(password)) {
+            res.sendStatus(200)
+            req.session.username = req.body.username
+            console.log(req.session.username)
+        };
+    })    
 })
 
 module.exports = router

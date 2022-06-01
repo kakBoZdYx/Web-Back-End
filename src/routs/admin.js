@@ -4,7 +4,6 @@ const router = express.Router()
 const bodyParser = require('body-parser')
 const passwordValidator = require('password-validator');
 const path = require('path')
-const src = path.join(__dirname, '/src/web-page-source')
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
@@ -14,7 +13,6 @@ router.use(express.static('site'))
 router.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, './src/views/'));
-router.use(express.static(src))
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
@@ -29,7 +27,6 @@ router.get('/', (req, res) => {
         let coll = db.collection('users');
         let users = await coll.find().toArray();
         res.render('admin', {users});
-
     });
 })
 module.exports = router

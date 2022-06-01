@@ -4,6 +4,20 @@ const bodyParser = require('body-parser')
 const passwordValidator = require('password-validator');
 const path = require('path')
 const src = path.join(__dirname, '/src/web-page-source')
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+
+app.use(cookieParser())
+app.use(
+    session({
+      secret : 'secretkey',
+      key : 'seed',
+      cookie : {
+          httpOnly : true,
+          maxAge : null
+      }
+    })
+  )
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
@@ -27,6 +41,5 @@ const adminRout = require(path.join(__dirname, '/src/routs/admin.js'))
 app.use('/admin', adminRout)
 
 app.get('/' , function(req, res) {res.sendFile(path.join(__dirname, '/src/web-page-source/index.html'))})
-
 
 app.listen(3000, () => {console.log(`Server Started`)})
