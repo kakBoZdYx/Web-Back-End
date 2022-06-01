@@ -47,5 +47,16 @@ router.get('/', (req, res) => {
 })
 
 
+router.get('/doctorProfile/:username', (req, res) => {
+  var temp_doctor = req.params.username;
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctors');
+      let render_doctor = await doccoll.findOne({'username': temp_doctor});
+      res.render('doctorProfile', {render_doctor})
+  });
+})
+
+
 
 module.exports = router

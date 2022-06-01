@@ -42,7 +42,7 @@
         <!-- ===== ===== User Main-Profile ===== ===== -->
         <section class="userProfile card">
             <div class="profile">
-                <figure><img src="../img/index-page/alm.png" alt="profile" width="250px" height="250px"></figure>
+                <figure><img src="<%= render_doctor.imagelink %>" alt="profile" width="250px" height="250px"></figure>
             </div>
         </section>
 
@@ -70,7 +70,7 @@
         <!-- ===== ===== User Details Sections ===== ===== -->
         <section class="userDetails card">
             <div class="userName">
-                <h1 class="name"><%= userData.name%></h1>
+                <h1 class="name"><%= render_doctor.fullname %></h1>
                  <div class="map">
                     <i class="ri-map-pin-fill ri"></i>
                     <span>Astana, KZ</span>
@@ -131,7 +131,7 @@
                 <ul>
                     <li class="phone">
                         <h1 class="label">Почта : </h1>
-                        <span class="info"><%= userData.email%></span>
+                        <span class="info"><%= render_doctor.fullname %></span>
                     </li>
 
 

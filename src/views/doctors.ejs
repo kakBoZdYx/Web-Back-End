@@ -94,7 +94,7 @@
 
         <% doctors.forEach(doctor => { %>
             <div class="box">
-                <img src="<%= doctor.imagelink %>" alt="">
+              <a href="/doctors/doctorProfile/<%= doctor.username %>"><img src="<%= doctor.imagelink %>" alt=""></a>
                 <h3><%= doctor.fullname %></h3>
                 <span><%= doctor.position %></span>
                 <div class="share">
@@ -103,7 +103,7 @@
     
                 </div>
             </div>
-      <% }) %>
+        <% }) %>
     </div>
 
 </section>
