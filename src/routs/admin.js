@@ -38,14 +38,18 @@ const uri = "mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?ret
 const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 router.get('/', (req, res) => {
-    mongoClient.connect(async function(error, mongo) {
-        let db = mongo.db('tempbase');
-        let coll = db.collection('users');
-        let users = await coll.find().toArray();
-        let doccoll = db.collection('doctors');
-        let doctors = await doccoll.find().toArray();
-        res.render('admin', {users, doctors});
-    });
+    if (req.session.userrole == 'admin') {
+        mongoClient.connect(async function(error, mongo) {
+            let db = mongo.db('tempbase');
+            let coll = db.collection('users');
+            let users = await coll.find().toArray();
+            let doccoll = db.collection('doctors');
+            let doctors = await doccoll.find().toArray();
+            res.render('admin', {users, doctors});
+        });
+    } else {
+        res.send(`Acces is not allowed`)
+    }
 })
 
 router.get('/user/delete/:name', function(req, res) {
@@ -136,8 +140,6 @@ router.post('/doctor/adddoctor', function(req, res) {
     res.send(200);
         
 })
-
-
 
 
 

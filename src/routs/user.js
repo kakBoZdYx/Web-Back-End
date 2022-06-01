@@ -12,7 +12,8 @@ router.use(cookieParser())
 router.use( // creating and connection express session
     session({
         secret: 'my key',
-        resave: 'false',
+        resave: 'true',
+        key : 'sid',
         saveUninitialized: 'false',
       store: MongoStore.create({ mongoUrl: 'mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority' })
     })
@@ -73,32 +74,41 @@ router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../src/web-page-source/secondaryPages/login.html'))
 }).post('/login', (req, res) => {
 
-    req.session.lgusername = req.body.login_username;
-    req.session.lgpassword = req.body.login_password;
+    var username = req.body.login_username;
+    var password = req.body.login_password;
 
     mongoClient.connect(async function(error, mongo) {
         let db = mongo.db('tempbase');
         let coll = db.collection('users');
 
-        console.log(await coll.findOne({username : req.session.lgusername}).password)
+        var logintemp = await coll.findOne({"username" : username})
+
+        console.log((await coll.findOne({"username" : username})).password)
         
-        if(await coll.findOne({username : req.session.lgusername}) == true){
-            if(await coll.findOne({username : req.session.lgusername}).password == req.session.lgpassword) {
+        if(await coll.findOne({"username" : username})){
+            if((await coll.findOne({"username" : username})).password == password) {
                 req.session.auth = true
+                req.session.username = username
+                req.session.userrole = (await coll.findOne({"username" : username})).role
                 console.log(req.session.auth)
-                res.sendStatus(200)
+                
+                if(req.session.userrole == 'admin'){
+                    res.redirect('/admin')
+                } else {
+                    res.render('profile', )
+                }
             } else {
                 req.session.auth = false
                 console.log(req.session.auth)
                 res.sendStatus(200)
+                console.log(`12`)
             }
         } else {
             req.session.auth = false
             console.log(req.session.auth)
             res.sendStatus(200)
+            console.log(`23`)
         }
-        console.log(await coll.findOne({username : req.session.lgusername}).password + " " + password)
-        console.log(await coll.findOne({username : req.session.lgusername}) + " " + username)
     })    
 })
 
@@ -107,7 +117,17 @@ router.get('/profile', (req, res) => {
 })
 
 router.get('/test', (req, res) => {
-    req.session.testsession = false
+    var username = "admin"
+
+    mongoClient.connect(async function(error, mongo){
+        let db = mongo.db('tempbase')
+        let coll = db.collection('users')
+        
+        var zxc = 
+
+        console.log((await coll.findOne({"username" : "admin"})).password)
+    })
+
     res.sendStatus(200)
 })
 
