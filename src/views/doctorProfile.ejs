@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/VZowzpr.png">
     <!-- ===== ===== Custom Css ===== ===== -->
     <link rel="stylesheet" href="/css/profile.css">
 
@@ -18,16 +18,16 @@
 
     </span>
     <header>
-      <a href="/to-index" class="logo"><img src="https://psv4.userapi.com/c236331/u605692609/docs/d24/c830bf8217cc/logo.png?extra=SxcXF5To9uxYLykXjgOgzRVve6SwUzLUPSl9fzg0dRiqDzwog0MOJWquve_P_9pC087_iNpGnhgtae-UbAMgU9xwG3oQl_WkNtqpZ6Opj-BH6ol9n67x5Wrx996E9hX3RB3Sqgy1GwCiiRvVoZ7IZXqhXA" alt=""></a>
+      <a href="/" class="logo"><img src="https://i.imgur.com/VZowzpr.png" alt=""></a>
       <div class="bx bx-menu" id="menu-icon"></div>
 
       <ul class="navbar">
-          <li><a href="/">Home</a></li>
-          <li><a href="#shop">Services</a></li>
-          <li><a href="#delivery">About</a></li>
-          <li><a href="#app">Plans</a></li>
-          <li><a href="#about">Calculator</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/#shop">Сервисы</a></li>
+        <li><a href="/#about">О нас</a></li>
+        <li><a href="/#app">Планы</a></li>
+        <li><a href="/#contact">Контакты</a></li>
+        <li><a href="/user/logout">Выйти</a></li>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
     </svg>
@@ -74,7 +74,9 @@
                 <p></p>
             </div>
 
-            <div class="rank">
+            <button class="review-text"><a href="/doctors/doctorZapis/<%= render_doctor.username %>">Записаться на прием</a></button>
+
+            <!-- <div class="rank">
                 <div class="rating">
                     <i class="ri-star-fill rate"></i>
                     <i class="ri-star-fill rate"></i>
@@ -82,25 +84,9 @@
                     <i class="ri-star-fill rate"></i>
                     <i class="ri-star-fill underrate"></i>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="btns">
-                <ul>
-                    <li class="sendMsg">
-                        <i class="ri-chat-4-fill ri"></i>
-                        <a href="#">Achievements</a>
-                    </li>
-
-                    <li class="sendMsg active">
-                        <i class="ri-check-fill ri"></i>
-                        <a href="#">Tracker</a>
-                    </li>
-
-                    <li class="sendMsg">
-                        <a href="#">Workouts</a>
-                    </li>
-                </ul>
-            </div>
+            <h2 class="heading"><%= render_doctor.description %></h2>
         </section>
 
 
@@ -108,11 +94,6 @@
         <section class="timeline_about card">
             <div class="tabs">
                 <ul>
-                    <li class="timeline">
-                        <i class="ri-eye-fill ri"></i>
-                        <span>Timeline</span>
-                    </li>
-
                     <li class="about active">
                         <i class="ri-user-3-fill ri"></i>
                         <span>About</span>
@@ -127,9 +108,6 @@
                         <h1 class="label">Полное имя : </h1>
                         <span class="info"><%= render_doctor.fullname %></span>
                     </li>
-
-
-
                 </ul>
             </div>
 
@@ -147,8 +125,20 @@
                     </li>
                 </ul>
             </div>
+            <form action="/doctors/doctorProfile/saveReview/<%= render_doctor.username %>" method="Post">
+                <h1 class="heading">Напишите отзыв про врача!</h1>
+                <textarea type="comment" class="review-text" name="review"></textarea>
+                <button type="submit">Отправить</button>
+            </form>
         </section>
     </div>
+    <section class="userProfile card">
+        <% for(var i=0; i<render_doctor.otziv.length; i++) { %>
+            <div class = "review-text-section">
+                <%= render_doctor.otziv %>
+            </div>
+        <% } %>
+    </section>
 </body>
 
 </html>

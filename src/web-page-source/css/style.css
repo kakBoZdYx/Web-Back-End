@@ -23,6 +23,21 @@
   border-radius: 20px;
 }
 
+.selection{
+  background-color: #e9e9e9;
+  padding: 20px;
+  border-radius: 20px;
+  width: 620px;
+  margin: auto;
+}
+
+.selection img{
+  display: inline-block;
+  border-radius: 500px;
+  width: 50px;
+}
+
+
 .admin-input{
   margin-top: 20px;
   width: 100%;
@@ -82,7 +97,7 @@
   font-size: 20px;
   display: block;
   margin: auto;
-  width: 120px;
+  margin-top: 10px;
   background: #e9e9e9;
   padding:10px;
   border: none;
@@ -97,7 +112,7 @@
   font-size: 20px;
   display: block;
   margin: auto;
-  width: 120px;
+  margin-top: 10px;
   background: #C8C8C8;
   padding:10px;
   border: none;
@@ -115,6 +130,16 @@
 }
 
 .delete-button {
+  font-weight: bolder;
+  font-size: 20px;
+  margin: auto;
+  background: #d4d4d4;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+}
+
+.zapisi tr td button{
   font-weight: bolder;
   font-size: 20px;
   margin: auto;

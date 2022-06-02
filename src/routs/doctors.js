@@ -54,6 +54,26 @@ router.get('/doctorProfile/:username', (req, res) => {
   });
 })
 
+router.post('/doctorProfile/saveReview/:username', (req, res) => {
+  var review = req.body.review;
+  console.log(review);
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctors');
+      let render_doctor = await doccoll.findOne({'username': req.params.username});
+      res.redirect('/doctors/doctorProfile/' + req.params.username)
+  });
+})
+
+router.get('/doctorZapis/:username', (req, res) => { 
+  mongoClient.connect(async function(error, mongo) {
+    let db = mongo.db('tempbase');
+    let doccoll = db.collection('doctors');
+    let render_doctor = await doccoll.findOne({'username': req.params.username});
+    res.render('doctorZapis', {render_doctor})
+});
+})
+
 
 
 module.exports = router

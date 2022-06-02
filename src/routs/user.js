@@ -67,10 +67,10 @@ router.get('/registration', (req, res) => {
             
             if (schema.validate(password) == true) {       
                 await coll.insertOne(tempdata);
-                res.send(200);
+                res.redirect('/user/login')
             }
             else {
-                res.send(200);            
+                res.redirect('/user/registration')
             }
         });
 })
@@ -101,11 +101,11 @@ router.get('/login', (req, res) => {
                 }
             } else {
                 req.session.auth = false
-                res.sendStatus(200)
+                res.redirect('/user/login')
             }
         } else {
             req.session.auth = false
-            res.sendStatus(200)
+            res.redirect('/user/login')
         }
     })    
 })

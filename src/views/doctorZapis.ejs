@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/index-page.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Вход | DenSay’lyq</title>
+    <link rel="icon" type="image/x-icon" href="../../img/index-page/logo.png">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo"><img src="../../img/index-page/logo.png" alt=""></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li><a href="/to-index">Главная</a></li>
+            <li><a href="/#shop">Сервисы</a></li>
+            <li><a href="/#delivery">О нас</a></li>
+            <li><a href="/#app">Планы</a></li>
+            <li><a href="/#contact">Контакты</a></li>
+            <li><a href="/to-profile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+    </svg></a></li>
+            </ul>
+        </header>
+        <h1 class="registrationhead">Запмсь к врачу <%= render_doctor.fullname%></h1>
+            <table class = "user-table" cellspacing=8>
+            <tr class="p=3">
+                  <th>Время и день</th>
+                  <th>12:00</th>
+                  <th>13:00</th>
+                  <th>14:00</th>
+                  <th>15:00</th>
+                  <th>16:00</th>
+                  <th>17:00</th>
+            </tr>
+            <div class="zapisi">
+           
+                  <tr>
+                        <td>Понедельник</td>
+                        <% for (var i = 0; i < 6; i++) {%>
+                            <td><button class="delete-button">Записаться</button></td>
+                        <% } %>
+                  </tr>
+                  <tr>
+                        <td>Вторник</td>
+                        <% for (var i = 0; i < 6; i++) {%>
+                            <td><button class="delete-button">Записаться</button></td>
+                        <% } %>
+                  </tr>
+                  <tr>
+                        <td>Среда</td>
+                        <% for (var i = 0; i < 6; i++) {%>
+                            <td><button class="delete-button">Записаться</button></td>
+                        <% } %>
+                  </tr>
+                  <tr>
+                        <td>Четверг</td>
+                        <% for (var i = 0; i < 6; i++) {%>
+                            <td><button class="delete-button">Записаться</button></td>
+                        <% } %>
+                  </tr>
+                  <tr>
+                        <td>Пятница</td>
+                        <% for (var i = 0; i < 6; i++) {%>
+                            <td><button class="delete-button">Записаться</button></td>
+                        <% } %>
+                  </tr>
+            </div>
+      </table>
+        
+  </div>
+</body>
+</html>
