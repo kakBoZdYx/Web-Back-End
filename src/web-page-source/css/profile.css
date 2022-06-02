@@ -160,9 +160,9 @@ body {
 }
 
 /* ===== =====>>  Container Cards Grid-Area Css Start  <<===== =====  */
-header {
+/* header {
   grid-area: header;
-}
+} */
 
 .userProfile {
   grid-area: userProfile;
@@ -190,7 +190,7 @@ header {
 }
 
 /* ===== =====>>  Container Header/Navbar Css  <<===== =====  */
-.container header {
+/* .container header {
   padding: 0 var(--p-2-5);
 }
 
@@ -208,7 +208,7 @@ header {
   font-size: var(--xl-fs);
   font-weight: 700;
   margin-left: var(--m-0-5);
-}
+} */
 
 /* ===== =====>>  User Main-Profile Css Start  <<===== ===== */
 .container .userProfile {
@@ -510,4 +510,20 @@ header {
 .timeline_about .contact_info ul .email span,
 .timeline_about .contact_info ul .site span {
   color: var(--f5-color);
+}
+
+.review-text{
+  width: 80%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+
+.review-text-section{
+  font-size: 20px;
+  width: 80%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 20px;
 }

@@ -5,45 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
     <title>Admin Page</title>
 </head>
 <body>
       <div class="signup">
-            <h1 class="registrationhead" >Welcome to admin profile</h1>
+      <h1 class="registrationhead" >Страница администратора</h1>
       </div>
       <table class = "user-table" cellspacing=8>
-      <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>City</th>
-            <th>Last Time</th>
-            <th>Password</th>
-      </tr>
-      <div>
-      <% users.forEach(user => { %>
-            <tr>
-                  <td> <%= user.name %></td>
-                  <td> <%= user.username %></td>
-                  <td> <%= user.city %></td>
-                  <td> <%= user.last_time %></td>
-                  <td> <%= user.password %></td>
-                  <td><a href="/user/delete/<%= user.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Delete</button></td>
-                  <td><a href="/user/edit/<%= user.name %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Edit</button></td>
+            <tr class="p=3">
+                  <th>Имя</th>
+                  <th>Никнейм</th>
+                  <th>Город</th>
+                  <th>Время регистрации</th>
+                  <th>Пароль</th>
+                  <th>Email</th>
             </tr>
-      <% }) %>
-      </div>
+            <div>
+            <% users.forEach(user => { %>
+                  <tr>
+                        <td> <%= user.name %></td>
+                        <td> <%= user.username %></td>
+                        <td> <%= user.city %></td>
+                        <td> <%= user.last_time %></td>
+                        <td> <%= user.password %></td>
+                        <td> <%= user.email %></td>
+                        <td><a href="/admin/user/delete/<%= user.username %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Удалить</button></td>
+                        <td><a href="/admin/user/edit/<%= user.username %>"><button class = "delete-button">Изменить</button></td>
+                  </tr>
+            <% }) %>
+            </div>
+      </table>
 
-      <form action="/user/add" method="POST" class = "admin-form">
-            <input class="admin-input" name="name" placeholder="Name" type="text" required>
-            <input class="admin-input" name="username" type="text" placeholder="username">
-            <input class="admin-input" name="city" type="text" placeholder="city">
-            <input class="admin-input" name="password" type="text" placeholder="password">
-            <input class="admin-input" name="email" type="text" placeholder="email">
-            <input class="admin-registerbutton" type="submit" type="text" value = "Submit" href="/user/add">
+      <form action="/admin/user/add" method="POST" class = "admin-input">
+            <input name="name" placeholder="Имя" type="text" >
+            <input name="username" type="text" placeholder="Никнейм"required>
+            <input name="city" type="text" placeholder="Город">
+            <input name="password" type="text" placeholder="Пароль">
+            <input name="email" type="text" placeholder="Email">
+            <button type="submit" href="/admin/user/add">Добавить</button>
       </form>
-      
-      <a href="/doctor/add-doctor"><button action="/doctor/adddoctor" method="POST" class="delete-button">Add Doctor</button></a>
 
-</table>
+      <h1 class="registrationhead" >Таблица докторов</h1>
+
+      <table class = "user-table" cellspacing=8>
+            <tr>
+                  <th>ФИО</th>
+                  <th>Никнейм</th>
+                  <th>Отрасль</th>
+                  <th>Ссылка на фото</th>
+                  <th>Инстаграм</th>
+                  <th>Отзыв</th>
+            <div>
+            <% doctors.forEach(doctor => { %>
+                  <tr>
+                        <td> <%= doctor.fullname %></td>
+                        <td> <%= doctor.username %></td>
+                        <td> <%= doctor.position %></td>
+                        <td> <%= doctor.imagelink %></td>
+                        <td> <%= doctor.instalink %></td>
+                        <td> <%= doctor.otziv %></td>
+                        <td><a href="/admin/user/deleteDoc/<%= doctor.username %>"><button class = "delete-button" action ="/admin/delete-user" method="post" type="submit" >Удалить</button></td>
+                        <td><a href="/admin/user/editDoc/<%= doctor.username %>"><button class = "delete-button">Изменить</button></td>
+                  </tr>
+            <% }) %>
+            </div>
+      </table>
+
+      <form action="/admin/doctor/adddoctor" method="POST" class = "admin-input">
+            <input name="fullname" placeholder="ФИО" type="text">
+            <input name="username" placeholder="Никнейм" type="text" required>
+            <input name="imagelink" type="text" placeholder="Отрасль">
+            <input name="position" type="text" placeholder="Ссылка на фото">
+            <input name="instalink" type="text" placeholder="Ссылка на инсту">
+            <input name="otziv" type="text" placeholder="Отзыв">
+            <button type="submit">Добавить</button>
+      </form>
+      <!-- <a href="/doctor/add-doctor"><button action="/doctor/adddoctor" method="POST" class="doctor-button">Add Doctor</button></a> -->
+
+      <td class="admin-input" ><a href="/"><button class = "delete-button" style="text-align: center;">Вернуться в главное меню</button></a></td>
+         
 </body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script> -->
+
 </html>
+

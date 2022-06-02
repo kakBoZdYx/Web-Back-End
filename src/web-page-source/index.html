@@ -16,15 +16,15 @@
 <body>
     <!-- Navabar -->
     <header>
-        <a href="#" class="logo"><img src="img/index-page/logo.png" alt=""></a>
+        <a href="/" class="logo"><img src="img/index-page/logo.png" alt=""></a>
 
         <ul class="navbar">
-            <li><a href="/to-index">Главная</a></li>
+            <li><a href="/">Главная</a></li>
             <li><a href="#shop">Сервисы</a></li>
             <li><a href="#delivery">О нас</a></li>
             <li><a href="#app">Планы</a></li>
             <li><a href="#contact">Контакты</a></li>
-            <li><a href="/to-profile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+            <li><a href="/user/profile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
 </svg></a></li>
         </ul>
@@ -37,7 +37,7 @@
             <span>Приветсвуем!</span>
             <h1>DenSay’lyq</h1>
             <h2>Начни свой путь ЗОЖ  <br>прямо сейчас</h2>
-            <a href="/signup" class="btn">Начать</a>
+            <a href="/user/registration" class="btn">Начать</a>
         </div>
         <div class="home-img">
             <img src="img/index-page/main.png" alt="">
@@ -62,7 +62,7 @@
                 </div>
                 <h2>Доктор - твой друг! </h2>
                 <span>Вперед!</span>
-                <a href="/send-doctor-page" class="btn">Начать</a>
+                <a href="/doctors" class="btn">Начать</a>
             </div>
 
             <div class="box">
@@ -142,6 +142,7 @@
             <div class="app-img">
                 <img src="img/index-page/photo_2022-05-12_07-16-31.jpg" alt="">
             </div>
+        </br>
         </div>
     </section>
 
@@ -150,11 +151,11 @@
      <div class="container">
         <div class="content">
             <div class="box form wow slideInLeft">
-               <form>
-                  <input type="text" placeholder="Имя">
-                  <input type="text" placeholder="E-mail">
-                  <input type="text" placeholder="Телефон">
-                  <textarea placeholder="Сообщение..."></textarea>
+               <form action="/feedback" method="post">
+                  <input type="text" name="feedback_name" placeholder="Имя">
+                  <input type="text" name="feedback_email" placeholder="E-mail">
+                  <input type="text" name="feedback_phone" placeholder="Телефон">
+                  <textarea name="feedback_message" placeholder="Сообщение..."></textarea>
                   <button type="submit">Отправить</button>
                </form>
             </div>

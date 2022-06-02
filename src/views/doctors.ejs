@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доктора | DenSay’lyq</title>
+
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/VZowzpr.png">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../css/style-doc.css">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+    <a href="/#" class="logo"><img src="https://i.imgur.com/VZowzpr.png" alt=""></a>
+
+    <ul class="navbar">
+        <li><a href="/">Главная</a></li>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#doctors">Доктора</a></li>
+        <li><a href="#fyq">FАQs</a></li>
+        <li><a href="#review">Отзывы</a></li>
+        <li><a href="/user/profile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+<path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+</svg></a></li>
+    </ul>
+
+</header>
+<!-- header section ends -->
+
+
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="image">
+        <img src="../img/image-doc/doctor.png" alt="">
+    </div>
+
+    <div class="content">
+        <h3>Ваше здоровье –</h3>
+        <h3>    наша высшая ценность</h3>
+        <p>Следить за своим здоровьем важно и никогда не поздно!</p>
+
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+    <h1 class="heading"> <span>#Медицина </span>  для каждого! </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="../img/image-doc/about-img.svg" alt="">
+        </div>
+
+        <div class="content">
+            <h3>Мы Заботимся О Вашем Здоровом Образе Жизни</h3>
+            <p>История «Densaylyq» началась в 2022 году с небольшой компании друзей. На сегодняшний день мы – многопрофильный медицинский центр, предоставляющий широкий спектр услуг, направленных на восстановление здоровья пациентов. </p>
+            <p>Сотрудничество с лучшими врачами профессионалами предоставляет качественные медицинские услуги, с использованием современной аппаратуры, а также новейшими методиками лечения и диагностики.</p>
+
+        </div>
+
+    </div>
+
+</section> 
+
+<!-- about section ends -->
+
+<!-- doctors section starts  -->
+
+<section class="doctors" id="doctors">
+
+    <h1 class="heading"> Наши <span>доктора</span> </h1>
+
+    <div class="box-container">
+
+        <% doctors.forEach(doctor => { %>
+            <div class="box">
+              <a href="/doctors/doctorProfile/<%= doctor.username %>"><img src="<%= doctor.imagelink %>" alt=""></a>
+                <h3><%= doctor.fullname %></h3>
+                <span><%= doctor.position %></span>
+                <div class="share">
+    
+                    <a href="<%= doctor.instalink %>" class="fab fa-instagram"></a>
+    
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+</section>
+
+<!-- doctors section ends -->
+
+<section class="fyq" id="fyq">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+     </head>
+     <body>
+   
+       <div class="container">
+         <div class="row">
+           <div class="faq-wrapper">
+             <div class="header-faq">
+               <h1>FAQs</h1>
+             </div>
+             <div class="faq-inner">
+               <div class="faq-item">
+                 <h3>
+                 Какие адаптивки полезны для кожи?
+                   <span class="faq-plus">&plus;</span>
+                 </h3>
+                 <div class="faq-body">
+                 Витамины: А, Е, С, Д, В (1–8), F, Рутин; Микроэлементы: Цинк, Селен, Сера, Железо, Магний, Медь, Кремний; Жиры: Холестерин, Омега 3-6-9; Аминоксилоты: Пролин, Лизин, Цистин, Глицин.
+               </div>
+             </div>
+               <hr>
+               <div class="faq-item">
+                 <h3>
+                 Причины появления перхоти
+                   <span class="faq-plus">&plus;</span>
+                 </h3>
+                 <div class="faq-body">
+                   Перхоть — это не болезнь, а симптом. И чаще всего возникает при следующих заболеваниях: Себорейный дерматит; Псориаз - хроническое кожное заболевание; Атопический дерматит. Стоит обратиться к трихологу, или дерматологу. Без верного диагноза невозможно и правильное лечение.
+                 </div>
+               </div>
+               <hr>
+               <div class="faq-item">
+                 <h3>
+                 Какие признаки не хватки клетчатки в организме?
+                   <span class="faq-plus">&plus;</span>
+                 </h3>
+                 <div class="faq-body">
+                 Чувство голода сразу после принятия пищи, высокое давление, проблемы со снижением веса, высокий уровень холестерина, проблемы с кишечником, повышение сахара крови.
+               </div>
+               </div>
+               <hr>
+               <div class="faq-item">
+                 <h3>
+                 Какие причины у неприятного запаха изо рта?
+                   <span class="faq-plus">&plus;</span>
+                 </h3>
+                 <div class="faq-body">
+                   Причинами могут послужить: заболевания полости рта; либо это может быть следствием жизнедеятельности протеолитических, анаэробных, грамотрицательных бактерий. Другая причина – сухость слизистых рта. И самая популярная – плохое питание и неправильный образ жизни (кофе, алкоголь, табакокурение). Более редкими причинами являются: не оральные (заболевания носовых ходов, жкт, легких, печени)
+                 </div>
+               </div>
+               <hr>
+               <div class="faq-item">
+                 <h3>
+             Что приводит к хроническому стрессу?
+                   <span class="faq-plus">&plus;</span>
+                 </h3>
+                 <div class="faq-body">
+   Хронический стресс вычерпывает все наши резервы, что приводит к истощению и срыву регуляции важных функций. Причины: повышенная нагрузка, недостаток сна, отсутствие сбалансированного питания, отсутствие физической активности.
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       <script type="text/javascript">
+         $(".faq-plus").on('click',function(){
+           $(this).parent().parent().find('.faq-body').slideToggle();
+         });
+       </script>
+     </body>
+       </section>
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+    <h1 class="heading">От<span>зывы</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="../img/image-doc/бегемот.png" alt="">
+            <h3>Мистер Бегемот</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam sapiente nihil aperiam? Repellat sequi nisi aliquid perspiciatis libero nobis rem numquam nesciunt alias sapiente minus voluptatem, reiciendis consequuntur optio dolorem!</p>
+        </div>
+
+        <div class="box">
+            <img src="../img/image-doc/овца.png" alt="">
+            <h3>Мисс Овечка</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam sapiente nihil aperiam? Repellat sequi nisi aliquid perspiciatis libero nobis rem numquam nesciunt alias sapiente minus voluptatem, reiciendis consequuntur optio dolorem!</p>
+        </div>
+
+        <div class="box">
+            <img src="../img/image-doc/панда.png" alt="">
+            <h3>Мистер По</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam sapiente nihil aperiam? Repellat sequi nisi aliquid perspiciatis libero nobis rem numquam nesciunt alias sapiente minus voluptatem, reiciendis consequuntur optio dolorem!</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+
+
+<a href="#home" class="fas fa-angle-up" id="scroll-top"></a>
+
+
+<!-- custom js file link  -->
+<script src="../js/script-doc.js"></script>
+
+</body>
+</html>
