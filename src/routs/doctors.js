@@ -68,10 +68,30 @@ router.post('/doctorProfile/saveReview/:username', (req, res) => {
 router.get('/doctorZapis/:username', (req, res) => { 
   mongoClient.connect(async function(error, mongo) {
     let db = mongo.db('tempbase');
-    let doccoll = db.collection('doctors');
+    let doccoll = db.collection('doctorschedule');
     let render_doctor = await doccoll.findOne({'username': req.params.username});
     res.render('doctorZapis', {render_doctor})
+    console.log(render_doctor.schedule.mn[1])
 });
+})
+
+
+
+router.get('/doctorZapis/:', (req, res) => {
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctorschedule');
+      // var tempdata = {
+      //   "username" : "doctor_3",
+      //   "schedule" : {
+      //   "mn" : [false, false, false, false, false, false],
+      //   "tu" : [false, false, false, false, false, false],
+      //   "wd" : [false, false, false, false, false, false],
+      //   "th" : [false, false, false, false, false, false],
+      //   "fr" : [false, false, false, false, false, false]
+      //   }
+      // }
+  });
 })
 
 

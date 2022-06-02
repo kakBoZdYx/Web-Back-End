@@ -40,7 +40,8 @@
            
                   <tr>
                         <td>Понедельник</td>
-                        <% for (var i = 0; i < 6; i++) {%>
+                        <% for (var i = 0; i < 6; i++) { %>
+                            <% if (render_doctor.schedule.mn[i] == false)% {>
                             <td><button class="delete-button">Записаться</button></td>
                         <% } %>
                   </tr>

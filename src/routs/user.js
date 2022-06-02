@@ -19,38 +19,27 @@ router.use( // creating and connection express session
     })
   )
 
-
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
 
 router.use(bodyParser.json()); //list of middlewares
 router.use(express.static('site'))
 router.use(bodyParser.urlencoded({extended: true}));
-app.set('views', path.join(__dirname, './src/views/'));
-app.set('view engine', 'jade')
 app.set('view engine', 'ejs')
-
-
+app.set('views', path.join(__dirname, './src/views/'));
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
 
 const { MongoClient, ServerApiVersion } = require('mongodb');//MongoDb Connection
 const { profile } = require('console');
-const req = require('express/lib/request');
 const uri = "mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority"; 
 const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
 //localhost:3000/user/registration
 router.get('/registration', (req, res) => {
-    if(req.session.auth == true){
-        res.redirect('/user/profile')
-        
-    } else {
-        res.sendFile(path.join(__dirname, '../../src/web-page-source/secondaryPages/registrationPages/registration.html'))
-    }
-    
+    res.sendFile(path.join(__dirname, '../../src/web-page-source/secondaryPages/registrationPages/registration.html'))
 }).post('/registration', (req, res) => {
         var username = req.body.username;
         var password = req.body.password;
@@ -87,11 +76,7 @@ router.get('/registration', (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-    if(req.session.auth == true){
-        res.redirect('/user/profile')
-    } else {
-        res.sendFile(path.join(__dirname, '../../src/web-page-source/secondaryPages/login.html'))
-    }
+    res.sendFile(path.join(__dirname, '../../src/web-page-source/secondaryPages/login.html'))
 }).post('/login', (req, res) => {
 
     var username = req.body.login_username;
@@ -142,13 +127,12 @@ router.get('/logout', (req, res) => {
 
 router.get('/test', (req, res) => {
     var username = "admin"
+    
 
     mongoClient.connect(async function(error, mongo){
         let db = mongo.db('tempbase')
         let coll = db.collection('users')
         
-        var zxc = 
-
         console.log((await coll.findOne({"username" : "admin"})).password)
     })
 
