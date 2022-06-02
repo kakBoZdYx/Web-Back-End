@@ -26,10 +26,10 @@
 
         <ul class="navbar">
             <li><a href="/">Главная</a></li>
-            <li><a href="/#shop">Сервисы</a></li>
-            <li><a href="/#delivery">Тренировки</a></li>
-            <li><a href="/#contact">Контакты</a></li>
-            <li><a href="/to-profile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+            <li><a href="#shop">Сервисы</a></li>
+            <li><a href="#delivery">Тренировки</a></li>
+            <li><a href="#contact">Контакты</a></li>
+            <li><a href="/user/profile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
 </svg></a></li>
         </ul>
@@ -38,20 +38,20 @@
 
     <section class="home" id="home">
       <div class="home-img">
-          <img src="../img/workout.png" alt="">
+          <img src="../img/index-page/workout.png" alt="">
       </div>
         <div class="home-text">
             <span>Приветсвуем!</span>
             <h1>DenSay’lyq</h1>
             <h2>Начни свой путь ЗОЖ   <br>прямо сейчас</h2>
-            <a href="/signup" class="btn">Начать</a>
+            <a href="/user/profile" class="btn">Начать</a>
         </div>
     </section>
 
     <section class="about" id="about">
     	  <div class="container">
     	  	  <div class="content">
-    	  	  	   <div class="box wow bounceInUp">
+    	  	  	   <div class="box wow bounceInUp" id="shop">
     	  	  	   	   <div class="inner">
     	  	  	   	   	   <div class="img">
     	  	  	   	   	   	  <img src="../img/workouts_img/free-sticker-workout-4860890.png" alt="about" />
@@ -91,8 +91,8 @@
 <section class="vid" id="vid">
 
 
-  <div class="vid">
-<h1>    <h1>Тренировки</h1>
+  <div class="vid ">
+<h1>    <h1 class="temp " id = "delivery">Тренировки</h1>
     <br>
     <iframe src="https://youtu.be/4GvG7DWe2jo" frameborder="330"></iframe>
     <video src="https://youtu.be/4GvG7DWe2jo" controls="controls" width="330"></video>
@@ -115,15 +115,15 @@
 <section class="contact" id="contact">
  <div class="container">
     <div class="content">
-        <div class="box form wow slideInLeft">
-           <form>
-              <input type="text" placeholder="Имя">
-              <input type="text" placeholder="E-mail">
-              <input type="text" placeholder="Телефон">
-              <textarea placeholder="Сообщение..."></textarea>
-              <button type="submit">Отправить</button>
-           </form>
-        </div>
+            <div class="box form wow slideInLeft">
+               <form action="/feedback" method="post">
+                  <input type="text" name="feedback_name" placeholder="Имя">
+                  <input type="text" name="feedback_email" placeholder="E-mail">
+                  <input type="text" name="feedback_phone" placeholder="Телефон">
+                  <textarea name="feedback_message" placeholder="Сообщение..."></textarea>
+                  <button type="submit">Отправить</button>
+               </form>
+            </div>
         <div class="box text wow slideInRight">
              <h2>Связаться с нами</h2>
               <p class="title-p">Денсаулық - заботиться о вашем здоровье!</p>

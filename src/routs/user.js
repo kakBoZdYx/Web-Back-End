@@ -49,6 +49,7 @@ router.get('/registration', (req, res) => {
         var surname = req.body.surname;
         var datentime = new Date();
         var monster = req.body.monster
+        var gender = req.body.gender
     
         var tempdata = {
             "username" : username,
@@ -59,7 +60,8 @@ router.get('/registration', (req, res) => {
             "email" : email,
             "role" : "user",
             "last_time" : datentime,
-            "photo_url" : monster
+            "photo_url" : monster,
+            "gender" : gender
         }
         mongoClient.connect(async function(error, mongo) {
             let db = mongo.db('tempbase');
