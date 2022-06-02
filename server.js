@@ -47,4 +47,6 @@ app.use('/doctors', doctorsRout)
 
 app.get('/' , function(req, res) {res.sendFile(path.join(__dirname, '/src/web-page-source/index.html'))})
 
+app.post('/feedback')
+
 app.listen(3000, () => {console.log(`Server Started`)})
