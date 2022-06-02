@@ -69,7 +69,6 @@ router.get('/user/edit/:username', function(req, res) {
     let username = req.params.username;
 		console.log(username)
 		mongoClient.connect(async function(error, mongo) {
-			
 			let db = mongo.db('tempbase')
 			let coll = db.collection('users')
 			let user = await coll.findOne({'username': username});
