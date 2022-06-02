@@ -34,6 +34,8 @@ var schema = new passwordValidator(); //schema for password
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
 
 const { MongoClient, ServerApiVersion } = require('mongodb');//MongoDb Connection
+const req = require('express/lib/request');
+const res = require('express/lib/response');
 const uri = "mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority"; 
 const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -180,6 +182,29 @@ router.get('/user/deleteDoc/:username', function(req, res) {
     })
 }); 
 
+router.get('/feedbacks', (req, res) => {
+    mongoClient.connect(async function(error, mongo) {
+        let db = mongo.db('tempbase')
+        let coll = db.collection('contactUs')
 
+        let feedbacks = await coll.find().toArray();
+
+        if(req.session.auth == true && req.session.userrole == "admin") {
+            res.render('feedback_watch', {feedbacks})
+        }
+    })
+})
+
+router.get('/delete-feedback/:last_time', (req, res) => {
+    let target = req.params.last_time;
+    mongoClient.connect(async function(error, mongo) {
+        let db = mongo.db('tempbase')
+        let coll = db.collection('contactUs')
+
+        await coll.deleteOne({'last_time': target});
+        console.log(await coll.findOne({'last_time': target}))
+        res.redirect('/admin/feedbacks')
+    })
+})
 
 module.exports = router
