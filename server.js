@@ -7,6 +7,8 @@ const src = path.join(__dirname, '/src/web-page-source')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(cookieParser())
 app.use( // creating and connection express session
