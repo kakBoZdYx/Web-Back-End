@@ -25,8 +25,11 @@ schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits
 router.use(bodyParser.json()); //list of middlewares
 router.use(express.static('site'))
 router.use(bodyParser.urlencoded({extended: true}));
-app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, './src/views/'));
+app.set('view engine', 'jade')
+app.set('view engine', 'ejs')
+
+
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
