@@ -77,12 +77,16 @@ router.get('/doctorZapis/:username', (req, res) => {
 
 
 
-router.get('/doctorZapis/:', (req, res) => {
+router.get('/truefyMn/:username/:i', (req, res) => {
+  var username = req.params.username;
+  var truth = req.params.i;
   mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');
       let doccoll = db.collection('doctorschedule');
-      // var tempdata = {
-      //   "username" : "doctor_3",
+      await doccoll.updateOne({"username" : username}, {$set: {schedule: {mn: {truth: false}}}});
+      res.redirect('/truefyMn/:username/:i');
+      // var tempdata = { 
+      //   "username" : "doctor_1",
       //   "schedule" : {
       //   "mn" : [false, false, false, false, false, false],
       //   "tu" : [false, false, false, false, false, false],
@@ -91,6 +95,7 @@ router.get('/doctorZapis/:', (req, res) => {
       //   "fr" : [false, false, false, false, false, false]
       //   }
       // }
+      // await doccoll.insertOne(tempdata);
   });
 })
 

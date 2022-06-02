@@ -41,32 +41,57 @@
                   <tr>
                         <td>Понедельник</td>
                         <% for (var i = 0; i < 6; i++) { %>
-                            <% if (render_doctor.schedule.mn[i] == false)% {>
-                            <td><button class="delete-button">Записаться</button></td>
+                            <% if (render_doctor.schedule.mn[i] == false) { %>
+                                <td><a href="/doctors/truefyMn/<%=render_doctor.username%>/<%=i%>"><button class="delete-button">Записаться</button></a></td>
+                            <% } %>
+                            <% if (render_doctor.schedule.mn[i] == true) { %>
+                                <td><button class="delete-button">Занято</button></td>
+                            <% } %>
                         <% } %>
                   </tr>
                   <tr>
                         <td>Вторник</td>
-                        <% for (var i = 0; i < 6; i++) {%>
-                            <td><button class="delete-button">Записаться</button></td>
+                        <% for (var i = 0; i < 6; i++) { %>
+                            <% if (render_doctor.schedule.tu[i] == false) { %>
+                                <td><a href=""><button class="delete-button">Записаться</button></a></td>
+                            <% } %>
+                            <% if (render_doctor.schedule.tu[i] == true) { %>
+                                <td><button class="delete-button">Занято</button></td>
+                            <% } %>
                         <% } %>
+
                   </tr>
                   <tr>
                         <td>Среда</td>
-                        <% for (var i = 0; i < 6; i++) {%>
-                            <td><button class="delete-button">Записаться</button></td>
+                        <% for (var i = 0; i < 6; i++) { %>
+                            <% if (render_doctor.schedule.wd[i] == false) { %>
+                                <td><button class="delete-button">Записаться</button></td>
+                            <% } %>
+                            <% if (render_doctor.schedule.wd[i] == true) { %>
+                                <td><button class="delete-button">Занято</button></td>
+                            <% } %>
                         <% } %>
                   </tr>
                   <tr>
                         <td>Четверг</td>
-                        <% for (var i = 0; i < 6; i++) {%>
-                            <td><button class="delete-button">Записаться</button></td>
+                        <% for (var i = 0; i < 6; i++) { %>
+                            <% if (render_doctor.schedule.th[i] == false) { %>
+                                <td><button class="delete-button">Записаться</button></td>
+                            <% } %>
+                            <% if (render_doctor.schedule.th[i] == true) { %>
+                                <td><button class="delete-button">Занято</button></td>
+                            <% } %>
                         <% } %>
                   </tr>
                   <tr>
                         <td>Пятница</td>
-                        <% for (var i = 0; i < 6; i++) {%>
-                            <td><button class="delete-button">Записаться</button></td>
+                        <% for (var i = 0; i < 6; i++) { %>
+                            <% if (render_doctor.schedule.fr[i] == false) { %>
+                                <td><button class="delete-button">Записаться</button></td>
+                            <% } %>
+                            <% if (render_doctor.schedule.fr[i] == true) { %>
+                                <td><button class="delete-button">Занято</button></td>
+                            <% } %>
                         <% } %>
                   </tr>
             </div>
