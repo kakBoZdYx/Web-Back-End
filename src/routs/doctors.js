@@ -80,22 +80,116 @@ router.get('/doctorZapis/:username', (req, res) => {
 router.get('/truefyMn/:username/:i', (req, res) => {
   var username = req.params.username;
   var truth = req.params.i;
+  var fit = "schedule.mn." + truth; 
+  var link = '/doctors/doctorZapis/' + username;
   mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');
       let doccoll = db.collection('doctorschedule');
-      await doccoll.updateOne({"username" : username}, {$set: {schedule: {mn: {truth: false}}}});
-      res.redirect('/truefyMn/:username/:i');
-      // var tempdata = { 
-      //   "username" : "doctor_1",
-      //   "schedule" : {
-      //   "mn" : [false, false, false, false, false, false],
-      //   "tu" : [false, false, false, false, false, false],
-      //   "wd" : [false, false, false, false, false, false],
-      //   "th" : [false, false, false, false, false, false],
-      //   "fr" : [false, false, false, false, false, false]
-      //   }
-      // }
-      // await doccoll.insertOne(tempdata);
+      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
+      res.redirect(link);
+  });
+})
+
+router.get('/truefyTu/:username/:i', (req, res) => {
+  var username = req.params.username;
+  var truth = req.params.i;
+  var fit = "schedule.tu." + truth; 
+  var link = '/doctors/doctorZapis/' + username;
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctorschedule');
+      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
+      res.redirect(link);
+  });
+})
+
+router.get('/truefyWd/:username/:i', (req, res) => {
+  var username = req.params.username;
+  var truth = req.params.i;
+  var fit = "schedule.wd." + truth; 
+  var link = '/doctors/doctorZapis/' + username;
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctorschedule');
+      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
+      res.redirect(link);
+  });
+})
+
+router.get('/truefyTh/:username/:i', (req, res) => {
+  var username = req.params.username;
+  var truth = req.params.i;
+  var fit = "schedule.th." + truth; 
+  var link = '/doctors/doctorZapis/' + username;
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctorschedule');
+      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
+      res.redirect(link);
+  });
+})
+
+router.get('/truefyFr/:username/:i', (req, res) => {
+  var username = req.params.username;
+  var truth = req.params.i;
+  var fit = "schedule.fr." + truth; 
+  var link = '/doctors/doctorZapis/' + username;
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctorschedule');
+      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
+      res.redirect(link);
+  });
+})
+
+
+
+
+
+
+
+
+router.get('/reset', (req, res) => {
+  var username = req.params.username;
+  var truth = req.params.i;
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctorschedule');
+      var tempdata = { 
+        "username" : "doctor_1",
+        "schedule" : {
+        "mn" : [false, false, false, false, false, false],
+        "tu" : [false, false, false, false, false, false],
+        "wd" : [false, false, false, false, false, false],
+        "th" : [false, false, false, false, false, false],
+        "fr" : [false, false, false, false, false, false]
+        }
+      }
+      var tempdata2 = { 
+        "username" : "doctor_2",
+        "schedule" : {
+        "mn" : [false, false, false, false, false, false],
+        "tu" : [false, false, false, false, false, false],
+        "wd" : [false, false, false, false, false, false],
+        "th" : [false, false, false, false, false, false],
+        "fr" : [false, false, false, false, false, false]
+        }
+      }
+      var tempdata3 = { 
+        "username" : "doctor_3",
+        "schedule" : {
+        "mn" : [false, false, false, false, false, false],
+        "tu" : [false, false, false, false, false, false],
+        "wd" : [false, false, false, false, false, false],
+        "th" : [false, false, false, false, false, false],
+        "fr" : [false, false, false, false, false, false]
+        }
+      }
+      await doccoll.deleteMany({});
+      await doccoll.insertOne(tempdata);
+      await doccoll.insertOne(tempdata2);
+      await doccoll.insertOne(tempdata3);
+      res.sendStatus(200);
   });
 })
 
