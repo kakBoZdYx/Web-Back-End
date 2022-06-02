@@ -25,7 +25,7 @@
     </svg></a></li>
             </ul>
         </header>
-        <h1 class="registrationhead">Запмсь к врачу <%= render_doctor.fullname%></h1>
+        <h1 class="registrationhead">Запись к врачу <%= render_doctor.fullname%></h1>
             <table class = "user-table" cellspacing=8>
             <tr class="p=3">
                   <th>Время и день</th>
@@ -37,7 +37,6 @@
                   <th>17:00</th>
             </tr>
             <div class="zapisi">
-           
                   <tr>
                         <td>Понедельник</td>
                         <% for (var i = 0; i < 6; i++) { %>
@@ -53,7 +52,7 @@
                         <td>Вторник</td>
                         <% for (var i = 0; i < 6; i++) { %>
                             <% if (render_doctor.schedule.tu[i] == false) { %>
-                                <td><a href=""><button class="delete-button">Записаться</button></a></td>
+                                <td><a href="/doctors/truefyTu/<%=render_doctor.username%>/<%=i%>"><button class="delete-button">Записаться</button></a></td>
                             <% } %>
                             <% if (render_doctor.schedule.tu[i] == true) { %>
                                 <td><button class="delete-button">Занято</button></td>
@@ -65,7 +64,7 @@
                         <td>Среда</td>
                         <% for (var i = 0; i < 6; i++) { %>
                             <% if (render_doctor.schedule.wd[i] == false) { %>
-                                <td><button class="delete-button">Записаться</button></td>
+                                <td><a href="/doctors/truefyWd/<%=render_doctor.username%>/<%=i%>"><button class="delete-button">Записаться</button></a></td>
                             <% } %>
                             <% if (render_doctor.schedule.wd[i] == true) { %>
                                 <td><button class="delete-button">Занято</button></td>
@@ -76,7 +75,7 @@
                         <td>Четверг</td>
                         <% for (var i = 0; i < 6; i++) { %>
                             <% if (render_doctor.schedule.th[i] == false) { %>
-                                <td><button class="delete-button">Записаться</button></td>
+                                <td><a href="/doctors/truefyTh/<%=render_doctor.username%>/<%=i%>"><button class="delete-button">Записаться</button></a></td>
                             <% } %>
                             <% if (render_doctor.schedule.th[i] == true) { %>
                                 <td><button class="delete-button">Занято</button></td>
@@ -87,7 +86,7 @@
                         <td>Пятница</td>
                         <% for (var i = 0; i < 6; i++) { %>
                             <% if (render_doctor.schedule.fr[i] == false) { %>
-                                <td><button class="delete-button">Записаться</button></td>
+                                <td><a href="/doctors/truefyFr/<%=render_doctor.username%>/<%=i%>"><button class="delete-button">Записаться</button></a></td>
                             <% } %>
                             <% if (render_doctor.schedule.fr[i] == true) { %>
                                 <td><button class="delete-button">Занято</button></td>
