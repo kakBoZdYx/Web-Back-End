@@ -48,7 +48,27 @@ app.use('/doctors', doctorsRout)
 app.get('/' , function(req, res) {res.sendFile(path.join(__dirname, '/src/web-page-source/index.html'))})
 
 app.post('/feedback', (req, res) => {
-  
-})
+  var fb_name = req.body.feedback_name
+  var fb_email = req.body.feedback_email
+  var fb_phone = req.body.feedback_phone
+  var fb_message = req.body.feedback_message
+  var datentime = new Date();
+
+  var feebackSchema = { 
+    "name" : fb_name,
+    "email" : fb_email,
+    "phone" : fb_phone,
+    "message" : fb_message,
+    "last_time" : datentime
+  }
+
+  mongoClient.connect(async function(error, mongo) {
+    let db = mongo.db('tempbase');
+    let coll = db.collection('contactUs');
+           
+    await coll.insertOne(feebackSchema);
+    res.redirect('/')
+    })
+});
 
 app.listen(3000, () => {console.log(`Server Started`)})
