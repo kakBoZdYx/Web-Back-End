@@ -66,82 +66,37 @@ router.post('/doctorProfile/saveReview/:username', (req, res) => {
 })
 
 router.get('/doctorZapis/:username', (req, res) => { 
-  mongoClient.connect(async function(error, mongo) {
-    let db = mongo.db('tempbase');
-    let doccoll = db.collection('doctorschedule');
-    let render_doctor = await doccoll.findOne({'username': req.params.username});
-    res.render('doctorZapis', {render_doctor})
-    console.log(render_doctor.schedule.mn[1])
-});
-})
-
-
-
-router.get('/truefyMn/:username/:i', (req, res) => {
-  var username = req.params.username;
-  var truth = req.params.i;
-  var fit = "schedule.mn." + truth; 
-  var link = '/doctors/doctorZapis/' + username;
-  mongoClient.connect(async function(error, mongo) {
+  if(typeof(req.session.user) !== 'undefined') {
+    mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');
       let doccoll = db.collection('doctorschedule');
-      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
-      res.redirect(link);
-  });
+      let render_doctor = await doccoll.findOne({'username': req.params.username});
+      res.render('doctorZapis', {render_doctor})
+      console.log(render_doctor.schedule)
+    });
+ }
+ else {
+    res.redirect('/user/login')
+ }
 })
 
-router.get('/truefyTu/:username/:i', (req, res) => {
-  var username = req.params.username;
-  var truth = req.params.i;
-  var fit = "schedule.tu." + truth; 
-  var link = '/doctors/doctorZapis/' + username;
-  mongoClient.connect(async function(error, mongo) {
-      let db = mongo.db('tempbase');
-      let doccoll = db.collection('doctorschedule');
-      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
-      res.redirect(link);
-  });
-})
 
-router.get('/truefyWd/:username/:i', (req, res) => {
-  var username = req.params.username;
-  var truth = req.params.i;
-  var fit = "schedule.wd." + truth; 
-  var link = '/doctors/doctorZapis/' + username;
-  mongoClient.connect(async function(error, mongo) {
-      let db = mongo.db('tempbase');
-      let doccoll = db.collection('doctorschedule');
-      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
-      res.redirect(link);
-  });
-})
 
-router.get('/truefyTh/:username/:i', (req, res) => {
-  var username = req.params.username;
-  var truth = req.params.i;
-  var fit = "schedule.th." + truth; 
-  var link = '/doctors/doctorZapis/' + username;
-  mongoClient.connect(async function(error, mongo) {
-      let db = mongo.db('tempbase');
-      let doccoll = db.collection('doctorschedule');
-      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
-      res.redirect(link);
-  });
+router.get('/truefyMn/:username/:i/:j', (req, res) => {
+    var username = req.params.username;
+    var truth = req.params.i + '.' + req.params.j;
+    console.log(truth)
+    console.log(username)
+    var fit = "schedule." + truth; 
+    var link = '/doctors/doctorZapis/' + username;
+    mongoClient.connect(async function(error, mongo) {
+        let db = mongo.db('tempbase');
+        let doccoll = db.collection('doctorschedule');
+        await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
+        res.redirect(link);
+    });
+    console.log(fit)
 })
-
-router.get('/truefyFr/:username/:i', (req, res) => {
-  var username = req.params.username;
-  var truth = req.params.i;
-  var fit = "schedule.fr." + truth; 
-  var link = '/doctors/doctorZapis/' + username;
-  mongoClient.connect(async function(error, mongo) {
-      let db = mongo.db('tempbase');
-      let doccoll = db.collection('doctorschedule');
-      await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
-      res.redirect(link);
-  });
-})
-
 
 
 
@@ -150,6 +105,7 @@ router.get('/truefyFr/:username/:i', (req, res) => {
 
 
 router.get('/reset', (req, res) => {
+  if(req.session.user.username == admin) {
   var username = req.params.username;
   var truth = req.params.i;
   mongoClient.connect(async function(error, mongo) {
@@ -157,40 +113,48 @@ router.get('/reset', (req, res) => {
       let doccoll = db.collection('doctorschedule');
       var tempdata = { 
         "username" : "doctor_1",
-        "schedule" : {
-        "mn" : [false, false, false, false, false, false],
-        "tu" : [false, false, false, false, false, false],
-        "wd" : [false, false, false, false, false, false],
-        "th" : [false, false, false, false, false, false],
-        "fr" : [false, false, false, false, false, false]
-        }
+        "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
+        "schedule" : [
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false]
+        ]
       }
       var tempdata2 = { 
         "username" : "doctor_2",
-        "schedule" : {
-        "mn" : [false, false, false, false, false, false],
-        "tu" : [false, false, false, false, false, false],
-        "wd" : [false, false, false, false, false, false],
-        "th" : [false, false, false, false, false, false],
-        "fr" : [false, false, false, false, false, false]
-        }
+        "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
+        "schedule" : [
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false]
+        ]
       }
       var tempdata3 = { 
         "username" : "doctor_3",
-        "schedule" : {
-        "mn" : [false, false, false, false, false, false],
-        "tu" : [false, false, false, false, false, false],
-        "wd" : [false, false, false, false, false, false],
-        "th" : [false, false, false, false, false, false],
-        "fr" : [false, false, false, false, false, false]
-        }
+        "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
+        "schedule" : [
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false],
+          [false, true, false, false, false, false]
+        ]
       }
       await doccoll.deleteMany({});
       await doccoll.insertOne(tempdata);
       await doccoll.insertOne(tempdata2);
       await doccoll.insertOne(tempdata3);
-      res.sendStatus(200);
+      res.redirect('/doctors/');
   });
+ }
+ else {
+   res.send('idi naxui')
+ }
+
 })
 
 

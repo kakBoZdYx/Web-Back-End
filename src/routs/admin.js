@@ -135,11 +135,26 @@ router.post('/doctor/adddoctor', function(req, res) {
         "instalink" : instalink,
         "otziv" : otziv
     }
+
+    var scdata = { 
+        "username" : username,
+        "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
+        "schedule" : [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0]
+        ]
+    }
+
     mongoClient.connect(async function(error, mongo) {
         let db = mongo.db('tempbase');
         let coll = db.collection('doctors');
+        let sccoll = db.collection('doctorschedule');
         
         await coll.insertOne(tempdata);
+        await sccoll.insertOne(scdata);
     });
     res.redirect('/admin')
         
