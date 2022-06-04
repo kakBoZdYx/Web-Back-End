@@ -140,11 +140,11 @@ router.post('/doctor/adddoctor', function(req, res) {
         "username" : username,
         "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
         "schedule" : [
-          [0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0]
+            [false, true, false, false, false, false],
+            [false, true, false, false, false, false],
+            [false, true, false, false, false, false],
+            [false, true, false, false, false, false],
+            [false, true, false, false, false, false]
         ]
     }
 

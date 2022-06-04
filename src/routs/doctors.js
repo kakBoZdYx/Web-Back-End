@@ -81,18 +81,17 @@ router.get('/doctorZapis/:username', (req, res) => {
 })
 
 
-
 router.get('/truefyMn/:username/:i/:j', (req, res) => {
     var username = req.params.username;
     var truth = req.params.i + '.' + req.params.j;
     console.log(truth)
-    console.log(username)
+    console.log(req.session.user.username)
     var fit = "schedule." + truth; 
     var link = '/doctors/doctorZapis/' + username;
     mongoClient.connect(async function(error, mongo) {
         let db = mongo.db('tempbase');
         let doccoll = db.collection('doctorschedule');
-        await doccoll.updateOne({"username" : username}, {$set: {[fit]: true}});
+        await doccoll.updateOne({"username" : username}, {$set: {[fit]: true, signed_user: req.session.user.username}});
         res.redirect(link);
     });
     console.log(fit)
@@ -100,12 +99,7 @@ router.get('/truefyMn/:username/:i/:j', (req, res) => {
 
 
 
-
-
-
-
 router.get('/reset', (req, res) => {
-  if(req.session.user.username == admin) {
   var username = req.params.username;
   var truth = req.params.i;
   mongoClient.connect(async function(error, mongo) {
@@ -150,11 +144,6 @@ router.get('/reset', (req, res) => {
       await doccoll.insertOne(tempdata3);
       res.redirect('/doctors/');
   });
- }
- else {
-   res.send('idi naxui')
- }
-
 })
 
 

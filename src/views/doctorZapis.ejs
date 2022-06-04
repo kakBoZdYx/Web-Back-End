@@ -43,10 +43,10 @@
                             <td><%= render_doctor.days[i] %></td>
                             <% for (var j = 0; j < 6; j++) { %>
                                 <% if (render_doctor.schedule[i][j] == false) { %>
-                                    <td><a href="/doctors/truefyMn/<%=render_doctor.username%>/<%=i%>/<%=j%>"><button class="delete-button">Записаться</button></a></td>
+                                    <td><a href="/doctors/truefyMn/<%=render_doctor.username%>/<%=i%>/<%=j%>"><button style="background-color: rgb(212, 255, 214);" class="delete-button">Записаться</button></a></td>
                                 <% } %>
                                 <% if (render_doctor.schedule[i][j] == true) { %>
-                                    <td><button class="delete-button">Занято</button></td>
+                                    <td><button style = "background-color: rgb(255, 184, 184);" class="delete-button">Занято</button></td>
                                 <% } %>
                             <% } %>
                             </tr>
