@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Доктор | Den'saulyq</title>
     <link rel="icon" type="image/x-icon" href="https://i.imgur.com/VZowzpr.png">
     <!-- ===== ===== Custom Css ===== ===== -->
     <link rel="stylesheet" href="/css/profile.css">
@@ -47,24 +47,6 @@
         </section>
 
 
-        <!-- ===== ===== Work & Skills Section ===== ===== -->
-        <section class="work_skills card">
-
-            <!-- ===== ===== Work Contaienr ===== ===== -->
-
-            <!-- ===== ===== Skills Contaienr ===== ===== -->
-            <div class="skills">
-                <h1 class="heading">Goals</h1>
-                <ul>
-                    <li style="--i:0">Gain 5 kg</li>
-                    <li style="--i:1">Maintain healthy lifestyle</li>
-                    <li style="--i:2">Improve mental health</li>
-                    <li style="--i:3">
-                      Improve body quality
-                    </li>
-                </ul>
-            </div>
-        </section>
 
 
         <!-- ===== ===== User Details Sections ===== ===== -->
@@ -125,20 +107,8 @@
                     </li>
                 </ul>
             </div>
-            <form action="/doctors/doctorProfile/saveReview/<%= render_doctor.username %>" method="Post">
-                <h1 class="heading">Напишите отзыв про врача!</h1>
-                <textarea type="comment" class="review-text" name="review"></textarea>
-                <button type="submit">Отправить</button>
-            </form>
         </section>
     </div>
-    <section class="userProfile card">
-        <% for(var i=0; i<render_doctor.otziv.length; i++) { %>
-            <div class = "review-text-section">
-                <%= render_doctor.otziv %>
-            </div>
-        <% } %>
-    </section>
 </body>
 
 </html>

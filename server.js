@@ -79,4 +79,4 @@ app.get('/to-food', (req,res) => {
   res.sendFile(path.join(__dirname, '/src/web-page-source/secondaryPages/food.html'))
 })
 
-app.listen(3000, () => {console.log(`Server Started`)})
+app.listen(process.env.PORT || 3000, () => {console.log(`Server Started`)})
