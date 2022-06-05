@@ -113,7 +113,7 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/profile', (req, res) => {
-    if(!req.session.auth || req.session.auth == false) {
+    if(!req.session.auth && req.session.auth == false) {
         res.redirect('/user/login')
     } else if(req.session.auth == true && req.session.user.role == 'user'){
         var curentUser = req.session.user
@@ -130,7 +130,7 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/profile/:x', (req, res) => {
-    if(!req.session.auth || req.session.auth == false) {
+    if(!req.session.auth && req.session.auth == false) {
         res.redirect('/user/login')
     } else if (req.session.user.role == 'doctor' && req.session.user.username == req.params.x) {
         res.redirect('/user/profile')
@@ -144,12 +144,9 @@ router.get('/profile/:x', (req, res) => {
             let db = mongo.db('tempbase');
             let coll = db.collection('users');
             let coll1 = db.collection('recomendations')
-
             
             recdata =  await coll1.find({'patient' : target}).toArray()
             userData = await coll.findOne({'username' : target})
-
-            console.log(recData)
 
             if(curentUser != undefined) {
                 res.render('profile', {userData, curentUser, recdata})
