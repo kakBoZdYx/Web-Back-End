@@ -144,12 +144,9 @@ router.get('/profile/:x', (req, res) => {
             let db = mongo.db('tempbase');
             let coll = db.collection('users');
             let coll1 = db.collection('recomendations')
-
             
             recdata =  await coll1.find({'patient' : target}).toArray()
             userData = await coll.findOne({'username' : target})
-
-            console.log(recData)
 
             if(curentUser != undefined) {
                 res.render('profile', {userData, curentUser, recdata})
