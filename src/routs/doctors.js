@@ -146,6 +146,13 @@ router.get('/reset', (req, res) => {
   });
 })
 
-
+router.get('/test', (req, res) => {
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let coll = db.collection('users');
+      let users = await coll.find().toArray();
+      res.render('test', {users});
+  });
+})
 
 module.exports = router
