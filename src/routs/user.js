@@ -33,6 +33,7 @@ schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits
 
 const { MongoClient, ServerApiVersion } = require('mongodb');//MongoDb Connection
 const { profile } = require('console');
+const { syncBuiltinESMExports } = require('module');
 const uri = "mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?retryWrites=true&w=majority"; 
 const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -132,21 +133,25 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/profile/:x', (req, res) => {
-    var target = req.params.x
-    let userData
-    var curentUser = req.session.user.username
-    mongoClient.connect(async function(error, mongo){
-        let db = mongo.db('tempbase');
-        let coll = db.collection('users');
+    if(!req.session.auth || req.session.auth == false) {
+        res.redirect('/user/login')
+    } else {
+        var target = req.params.x
+        let userData
+        var curentUser = req.session.user.username
+        mongoClient.connect(async function(error, mongo){
+            let db = mongo.db('tempbase');
+            let coll = db.collection('users');
 
-        userData = await coll.findOne({'username' : target})
-        if(curentUser != undefined) {
-            res.render('profile', {userData, curentUser})
-        } else {
-            res.render('profile', {userData}) 
-        }
-       
-    })
+            userData = await coll.findOne({'username' : target})
+            if(curentUser != undefined) {
+                res.render('profile', {userData, curentUser})
+            } else {
+                res.render('profile', {userData}) 
+            }
+        
+        })
+    }
 })
 
 
