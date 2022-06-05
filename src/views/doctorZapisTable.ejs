@@ -37,13 +37,13 @@
               <tr>
                     <% for (var i = 0; i < 5; i++) { %>
                         <tr>
-                        <td><%= render_doctor.days[i] %></td>
+                        <td><%= doctor_table.days[i] %></td>
                         <% for (var j = 0; j < 6; j++) { %>
-                            <% if (render_doctor.schedule[i][j].status == false) { %>
-                                <td><button style="background-color: rgb(212, 255, 214);" class="delete-button">Принять</button></td>
+                            <% if (doctor_table.schedule[i][j].status == false) { %>
+                                <td><button style="background-color: rgb(212, 255, 214);" class="delete-button">Свободно</button></td>
                             <% } %>
-                            <% if (render_doctor.schedule[i][j].status == true) { %>
-                                <td><button style = "background-color: rgb(255, 184, 184);" class="delete-button">Занято</button></td>
+                            <% if (doctor_table.schedule[i][j].status == true) { %>
+                                <td><button style = "background-color: rgb(255, 184, 184);" class="delete-button"><%= doctor_table.schedule[i][j].author%></button></td>
                             <% } %>
                         <% } %>
                         </tr>
