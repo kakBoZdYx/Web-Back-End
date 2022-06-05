@@ -58,7 +58,6 @@ router.get('/doctorProfile/:username', (req, res) => {
 
 router.post('/doctorProfile/saveReview/:username', (req, res) => {
   var review = req.body.review;
-  console.log(review);ы
   mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');
       let doccoll = db.collection('doctors');
@@ -74,7 +73,6 @@ router.get('/doctorZapis/:username', (req, res) => {
       let doccoll = db.collection('doctorschedule');
       let render_doctor = await doccoll.findOne({'username': req.params.username});
       res.render('doctorZapis', {render_doctor})
-      console.log(render_doctor.schedule)
     });
  }
  else {
@@ -86,8 +84,6 @@ router.get('/doctorZapis/:username', (req, res) => {
 router.get('/truefyMn/:username/:i/:j', (req, res) => {
     var username = req.params.username;
     var truth = req.params.i + '.' + req.params.j;
-    console.log(truth)
-    console.log(req.session.user.username)
     var fit = "schedule." + truth; 
     var link = '/doctors/doctorZapis/' + username;
     mongoClient.connect(async function(error, mongo) {
@@ -96,14 +92,11 @@ router.get('/truefyMn/:username/:i/:j', (req, res) => {
         await doccoll.updateOne({"username" : username}, {$set: {[fit]: {status: true, author: req.session.user.username}}});
         res.redirect(link);
     });
-    console.log(fit)
 })
 
 router.get('/falseFy/:username/:i/:j', (req, res) => {
   var username = req.params.username;
   var truth = req.params.i + '.' + req.params.j;
-  console.log(truth)
-  console.log(req.session.user.username)
   var fit = "schedule." + truth; 
   var link = '/doctors/' + username + '/acceptZapis';
   mongoClient.connect(async function(error, mongo) {
@@ -112,7 +105,6 @@ router.get('/falseFy/:username/:i/:j', (req, res) => {
       await doccoll.updateOne({"username" : username}, {$set: {[fit]: {status: false, author: 0}}});
       res.redirect(link);
   });
-  console.log(fit)
 })
 
 // router.get('/test', (req, res) => {
