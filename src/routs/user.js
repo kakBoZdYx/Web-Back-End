@@ -117,7 +117,7 @@ router.get('/profile', (req, res) => {
         res.redirect('/user/login')
     } else if(req.session.auth == true && req.session.user.role == 'user' || req.session.user.role == 'admin'){
         var curentUser = req.session.user
-        res.redirect('/user/profiles/' + curentUser.username)
+        res.redirect('/user/profile/' + curentUser.username)
     } else if(req.session.auth == true && req.session.user.role == 'admin'){
         var curentUser = req.session.user
         res.redirect('/admin')
@@ -129,7 +129,7 @@ router.get('/profile', (req, res) => {
 
 router.get('/logout', (req, res) => {
     try {
-        while(req.session.auth) {
+        while(req.session.auth == true) {
             req.session.destroy()
         }
     } catch(e) {
