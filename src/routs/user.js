@@ -94,7 +94,7 @@ router.get('/login', (req, res) => {
             if((await coll.findOne({"username" : username})).password == password) {
                 req.session.auth = true
                 req.session.user = userData
-                req.session.userrole = (await coll.findOne({"username" : username})).role
+                req.session.userrole = userData.role
                 
                 if(req.session.userrole == 'admin'){
                     res.redirect('/admin')
@@ -123,22 +123,19 @@ router.get('/profile', (req, res) => {
 
 router.get('/logout', (req, res) => {
     req.session.destroy()
-    console.log('21312312')
     res.redirect('/')
 })
 
-router.get('/test', (req, res) => {
-    var username = "admin"
-    
-
+router.get('/profile/:x', (req, res) => {
+    var target = req.params.x
+    let userData
     mongoClient.connect(async function(error, mongo){
-        let db = mongo.db('tempbase')
-        let coll = db.collection('users')
-        
-        console.log((await coll.findOne({"username" : "admin"})).password)
-    })
+        let db = mongo.db('tempbase');
+        let coll = db.collection('users');
 
-    res.sendStatus(200)
+        userData = await coll.findOne({'username' : target})
+        res.render('profile', {userData})
+    })
 })
 
 
