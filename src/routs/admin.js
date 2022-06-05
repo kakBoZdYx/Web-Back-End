@@ -140,12 +140,12 @@ router.post('/doctor/adddoctor', function(req, res) {
         "username" : username,
         "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
         "schedule" : [
-            [false, true, false, false, false, false],
-            [false, true, false, false, false, false],
-            [false, true, false, false, false, false],
-            [false, true, false, false, false, false],
-            [false, true, false, false, false, false]
-        ]
+            [{status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}],
+            [{status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}],
+            [{status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}],
+            [{status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}],
+            [{status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}, {status: false, author: 'none'}]
+          ]
     }
 
     mongoClient.connect(async function(error, mongo) {
