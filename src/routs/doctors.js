@@ -97,6 +97,17 @@ router.get('/truefyMn/:username/:i/:j', (req, res) => {
     console.log(fit)
 })
 
+// router.get('/test', (req, res) => {
+//   mongoClient.connect(async function(error, mongo) {
+//     let db = mongo.db('tempbase')
+//     let doccoll = db.collection('doctors')
+//     await doccoll.updateOne({'username': 'doctor_1'}, {$push: {{'otziv': 'pizdec', 'author' : req}}})
+//     var x = await doccoll.findOne({username: 'doctor_1'})
+//     console.log(x)
+//   })
+//   console.log('min')
+//   res.sendStatus(200)
+// })
 
 router.post('/doctorProfile/addReview/:username', (req, res) => {
   var review = req.body.review;
@@ -106,9 +117,9 @@ router.post('/doctorProfile/addReview/:username', (req, res) => {
   console.log(req.session.user.username)
   console.log(review)
   mongoClient.connect(async function(error, mongo) {
-    let db = mongo.db('tembase')
+    let db = mongo.db('tempbase')
     let doccoll = db.collection('doctors')
-    await doccoll.updateOne({username: req.params.username}, {$push: {otziv: review}})
+    await doccoll.updateOne({'username': req.params.username}, {$push: {otziv : {'otziv': review, 'author': author_username}}})
   })
   res.redirect(link)
 })

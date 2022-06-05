@@ -54,7 +54,7 @@ header {
   display: flex;
 }
 .navbar a {
-  font-size: 1rem;
+  font-size: 1.5rem;
   padding: 11px 20px;
   color: var(--second-color);
   font-weight: 600;
@@ -122,10 +122,9 @@ header {
 
 /* ===== =====>>  Body Css  <<===== =====  */
 body {
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 /* ===== =====>>  Body Main-Background Css  <<===== =====  */
@@ -526,6 +525,17 @@ body {
 
 .review-text-main{
   width: 80%;
+  font-size: 20px;
+  margin: auto;
+  background: #ececec;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+}
+
+
+.review-text{
+  width: 40%;
   font-size: 20px;
   margin: auto;
   background: #ececec;
