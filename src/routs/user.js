@@ -26,7 +26,7 @@ router.use(bodyParser.json()); //list of middlewares
 router.use(express.static('site'))
 router.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, './src/views/'));
+app.set('views', path.join(__dirname, './src/views/'))
 
 var schema = new passwordValidator(); //schema for password 
 schema.is().min(7).is().max(25).has().uppercase().has().lowercase().has().digits()
@@ -113,11 +113,16 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/profile', (req, res) => {
-    if(req.session.auth == true) {
-        var userData = req.session.user
-        res.render('profile', {userData})
-    } else {
+    if(!req.session.auth || req.session.auth == false) {
         res.redirect('/user/login')
+    } else {
+        var userData = req.session.user
+        var curentUser = req.session.user.username
+        if(curentUser != undefined) {
+            res.render('profile', {userData, curentUser})
+        } else {
+            res.render('profile', {userData}) 
+        }
     }
 })
 
@@ -129,12 +134,18 @@ router.get('/logout', (req, res) => {
 router.get('/profile/:x', (req, res) => {
     var target = req.params.x
     let userData
+    var curentUser = req.session.user.username
     mongoClient.connect(async function(error, mongo){
         let db = mongo.db('tempbase');
         let coll = db.collection('users');
 
         userData = await coll.findOne({'username' : target})
-        res.render('profile', {userData})
+        if(curentUser != undefined) {
+            res.render('profile', {userData, curentUser})
+        } else {
+            res.render('profile', {userData}) 
+        }
+       
     })
 })
 
