@@ -195,6 +195,24 @@ router.get('/patients', (req, res) => {
   });
 })
 
-router.get('')
+router.post('/:patientUsername/recomendationSet', (req, res) => {
+  mongoClient.connect(async function(error, mongo) {
+    let db = mongo.db('tempbase');
+    let coll = db.collection('recomendations');
+    var recomendationOrigin = req.session.user.username
+    var recomendationObject = req.params.patientUsername
+    var recomendationMessage = req.body.recomendation_content
+
+    var tempData = {
+      'doctor' : recomendationOrigin,
+      'patient' : recomendationObject,
+      'text' : recomendationMessage
+    }
+
+    await coll.insertOne(tempData)
+
+    res.redirect('/user/profile/' + req.params.patientUsername)
+});
+})
 
 module.exports = router

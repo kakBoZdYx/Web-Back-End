@@ -55,14 +55,32 @@
             <!-- ===== ===== Skills Contaienr ===== ===== -->
             <div class="skills">
                 <h1 class="heading">Рекомендации</h1>
-                <ul>
-                    <li style="--i:0">Сдать Анализы</li>
-                    <li style="--i:1">Кето Диета</li>
-                    <li style="--i:2">Витамин D & Omega3</li>
-                    <li style="--i:3">
-                      Активный образ жизни
-                    </li>
-                </ul>
+                <div class="recomendations">
+                    <% if(curentUser.username == userData.username) { %>
+                    <h1> Почитайте рекомендации от врачей </h1>
+                    <% recdata.forEach(recomendation => { %>
+                        <div class="review-text" style="margin-top: 5px; width: 80%;">
+                            <h4>Автор: <%= recomendation.doctor %></h4>
+                            <span><%= recomendation.text %></span>
+                        </div>
+                    <% }) %>
+                    <% } else if(curentUser.role == 'doctor') { %>
+                    <h1> Оставьте совои рекомендации </h1>
+                    <form action="../../doctors/<%= userData.username %>/recomendationSet" method="post">
+                        <lable>Рекомендация</lable>
+                        <input type="text" name="recomendation_content"/>
+                        <input type="submit" value="Отправить"/>
+                    </form>
+                    <% recdata.forEach(recomendation => { %>
+                        <div class="review-text" style="margin-top: 5px; width: 80%;">
+                            <h4>Автор: <%= recomendation.doctor %></h4>
+                            <span><%= recomendation.text %></span>
+                        </div>
+                    <% }) %>
+                    <% } else if(curentUser.username != userData.username) { %>
+                    <h1> Это не ваше дело, смотреть чужие рекомендации ( •̀ ω •́ )✧ </h1>
+                    <% } %>
+                </div>
             </div>
         </section>
 

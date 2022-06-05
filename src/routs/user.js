@@ -99,11 +99,11 @@ router.get('/login', (req, res) => {
                 if(req.session.user.role == 'admin'){
                     res.redirect('/admin')
                 } else {
-                    res.redirect('/user/profile')
+                    res.redirect('/user/profile/' + username)
                 }
             } else {
                 req.session.auth = false
-                res.redirect('/user/login')
+                res.redirect('/user/login' )
             }
         } else {
             req.session.auth = false
@@ -116,13 +116,8 @@ router.get('/profile', (req, res) => {
     if(!req.session.auth || req.session.auth == false) {
         res.redirect('/user/login')
     } else if(req.session.auth == true && req.session.user.role == 'user'){
-        var userData = req.session.user
-        var curentUser = req.session.user.username
-        if(curentUser != undefined) {
-            res.render('profile', {userData, curentUser})
-        } else {
-            res.render('profile', {userData}) 
-        }
+        var curentUser = req.session.user
+        res.redirect('/user/profile/' + curentUser.username)
     }
     else if(req.session.auth == true && req.session.user.role == 'doctor') {
         res.redirect('/doctors/doctorProfile/' + req.session.user.username) 
@@ -143,16 +138,23 @@ router.get('/profile/:x', (req, res) => {
     else {
         var target = req.params.x
         let userData
-        var curentUser = req.session.user
+        let recdata
+        let curentUser = req.session.user
         mongoClient.connect(async function(error, mongo){
             let db = mongo.db('tempbase');
             let coll = db.collection('users');
+            let coll1 = db.collection('recomendations')
 
+            
+            recdata =  await coll1.find({'patient' : target}).toArray()
             userData = await coll.findOne({'username' : target})
+
+            console.log(recData)
+
             if(curentUser != undefined) {
-                res.render('profile', {userData, curentUser})
+                res.render('profile', {userData, curentUser, recdata})
             } else {
-                res.render('profile', {userData}) 
+                res.render('profile', {userData, curentUser, recdata})
             }
         
         })
