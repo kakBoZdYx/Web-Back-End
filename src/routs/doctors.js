@@ -98,6 +98,22 @@ router.get('/truefyMn/:username/:i/:j', (req, res) => {
 })
 
 
+router.post('/doctorProfile/addReview/:username', (req, res) => {
+  var review = req.body.review;
+  var author_username = req.session.user.username;
+  var link = '/doctors/doctorProfile/' + req.params.username;
+  console.log(req.params.username)
+  console.log(req.session.user.username)
+  console.log(review)
+  mongoClient.connect(async function(error, mongo) {
+    let db = mongo.db('tembase')
+    let doccoll = db.collection('doctors')
+    await doccoll.updateOne({username: req.params.username}, {$push: {otziv: review}})
+  })
+  res.redirect(link)
+})
+
+
 
 router.get('/reset', (req, res) => {
   var username = req.params.username;
