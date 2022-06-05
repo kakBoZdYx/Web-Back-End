@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/index-page.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Вход | DenSay’lyq</title>
+    <link rel="icon" type="image/x-icon" href="../../img/index-page/logo.png">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo"><img src="../../img/index-page/logo.png" alt=""></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+        <ul class="navbar">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/#shop">Сервисы</a></li>
+            <li><a href="/#delivery">О нас</a></li>
+            <li><a href="/#app">Планы</a></li>
+            <li><a href="/#contact">Контакты</a></li>
+            </ul>
+
+    </header>
+    <table class = "user-table" cellspacing=8>
+        <tr class="p=3">
+              <th>Время и день</th>
+              <th>12:00</th>
+              <th>13:00</th>
+              <th>14:00</th>
+              <th>15:00</th>
+              <th>16:00</th>
+              <th>17:00</th>
+        </tr>
+        <div class="zapisi">
+              <tr>
+                    <% for (var i = 0; i < 5; i++) { %>
+                        <tr>
+                        <td><%= render_doctor.days[i] %></td>
+                        <% for (var j = 0; j < 6; j++) { %>
+                            <% if (render_doctor.schedule[i][j].status == false) { %>
+                                <td><button style="background-color: rgb(212, 255, 214);" class="delete-button">Принять</button></td>
+                            <% } %>
+                            <% if (render_doctor.schedule[i][j].status == true) { %>
+                                <td><button style = "background-color: rgb(255, 184, 184);" class="delete-button">Занято</button></td>
+                            <% } %>
+                        <% } %>
+                        </tr>
+                    <% } %>
+              </tr>
+        </div>
+    </table>
+
+  </div>
+</body>
+</html>

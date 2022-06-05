@@ -93,7 +93,7 @@ router.get('/truefyMn/:username/:i/:j', (req, res) => {
     mongoClient.connect(async function(error, mongo) {
         let db = mongo.db('tempbase');
         let doccoll = db.collection('doctorschedule');
-        await doccoll.updateOne({"username" : username}, {$set: {[fit]: true, signed_user: req.session.user.username}});
+        await doccoll.updateOne({"username" : username}, {$set: {[fit]: {status: true, author: req.session.user.username}}});
         res.redirect(link);
     });
     console.log(fit)
@@ -126,11 +126,22 @@ router.post('/doctorProfile/addReview/:username', (req, res) => {
   res.redirect(link)
 })
 
+router.get('/:username/acceptZapis', (req, res) => {
+  var doctor_username = req.params.username;
+  var user_username = req.session.user.username;
+  mongoClient.connect(async function(error, mongo) {
+    let db = mongo.db('tempbase')
+    let coll = db.collection('doctorschedule')
+    let doctor_table = await coll.findOne({'username': doctor_username})
+    res.render('doctorZapisTable', {doctor_table})
+  })
+})
 
 
 router.get('/reset', (req, res) => {
   var username = req.params.username;
   var truth = req.params.i;
+  var rec_user = '0';
   mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');
       let doccoll = db.collection('doctorschedule');
@@ -138,33 +149,33 @@ router.get('/reset', (req, res) => {
         "username" : "doctor_1",
         "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
         "schedule" : [
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false]
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}]
         ]
       }
       var tempdata2 = { 
         "username" : "doctor_2",
         "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
         "schedule" : [
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false]
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}]
         ]
       }
       var tempdata3 = { 
         "username" : "doctor_3",
         "days": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница"], 
         "schedule" : [
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false],
-          [false, true, false, false, false, false]
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}],
+          [{status: false, author: rec_user}, {status: true, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}, {status: false, author: rec_user}]
         ]
       }
       await doccoll.deleteMany({});
