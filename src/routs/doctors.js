@@ -45,19 +45,16 @@ router.get('/', (req, res) => {
 
 
 router.get('/doctorProfile/:username', (req, res) => {
-  var target = req.params.x
   var curentUser = req.session.user.username
   var temp_doctor = req.params.username;
   mongoClient.connect(async function(error, mongo) {
-      let db = mongo.db('tempbase');
+      let db = mongo.db('tempbase');  
       let doccoll = db.collection('doctors');
-      let coll = db.collection('users');
       let render_doctor = await doccoll.findOne({'username': temp_doctor});
-      userData = await coll.findOne({'username' : target})
         if(curentUser != undefined) {
-            res.render('doctorProfile', {render_doctor, userData, curentUser})
+            res.render('doctorProfile', {render_doctor, curentUser})
         } else {
-            res.render('doctorProfile', {render_doctor, userData})
+            res.render('doctorProfile', {render_doctor})
         }
   });
 })
