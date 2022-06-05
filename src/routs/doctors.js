@@ -123,9 +123,6 @@ router.post('/doctorProfile/addReview/:username', (req, res) => {
   var review = req.body.review;
   var author_username = req.session.user.username;
   var link = '/doctors/doctorProfile/' + req.params.username;
-  console.log(req.params.username)
-  console.log(req.session.user.username)
-  console.log(review)
   mongoClient.connect(async function(error, mongo) {
     let db = mongo.db('tempbase')
     let doccoll = db.collection('doctors')
