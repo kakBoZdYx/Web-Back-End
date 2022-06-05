@@ -40,10 +40,10 @@
                         <td><%= doctor_table.days[i] %></td>
                         <% for (var j = 0; j < 6; j++) { %>
                             <% if (doctor_table.schedule[i][j].status == false) { %>
-                                <td><button style="background-color: rgb(212, 255, 214);" class="delete-button">Свободно</button></td>
+                                <td><button style="background-color: rgb(212, 255, 214);" class="delete-button" >Свободно</button></td>
                             <% } %>
                             <% if (doctor_table.schedule[i][j].status == true) { %>
-                                <td><button style = "background-color: rgb(255, 184, 184);" class="delete-button"><%= doctor_table.schedule[i][j].author%></button></td>
+                                <td><button style = "background-color: rgb(255, 184, 184);" class="delete-button"><a href="/user/profile/<%= doctor_table.schedule[i][j].author%>"><%= doctor_table.schedule[i][j].author%></a></button></td>
                             <% } %>
                         <% } %>
                         </tr>
