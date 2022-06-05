@@ -137,7 +137,7 @@ router.get('/logout', (req, res) => {
 router.get('/profile/:x', (req, res) => {
     if(!req.session.auth || req.session.auth == false) {
         res.redirect('/user/login')
-    } else if (req.session.user.role == 'doctor') {
+    } else if (req.session.user.role == 'doctor' && req.session.user.username == req.params.x) {
         res.redirect('/user/profile')
     }
     else {
