@@ -61,7 +61,7 @@ router.get('/doctorProfile/:username', (req, res) => {
 
 router.post('/doctorProfile/saveReview/:username', (req, res) => {
   var review = req.body.review;
-  console.log(review);
+  console.log(review);ы
   mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');
       let doccoll = db.collection('doctors');
