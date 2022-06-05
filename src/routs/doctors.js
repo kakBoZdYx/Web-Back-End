@@ -99,6 +99,22 @@ router.get('/truefyMn/:username/:i/:j', (req, res) => {
     console.log(fit)
 })
 
+router.get('/falseFy/:username/:i/:j', (req, res) => {
+  var username = req.params.username;
+  var truth = req.params.i + '.' + req.params.j;
+  console.log(truth)
+  console.log(req.session.user.username)
+  var fit = "schedule." + truth; 
+  var link = '/doctors/' + username + '/acceptZapis';
+  mongoClient.connect(async function(error, mongo) {
+      let db = mongo.db('tempbase');
+      let doccoll = db.collection('doctorschedule');
+      await doccoll.updateOne({"username" : username}, {$set: {[fit]: {status: false, author: 0}}});
+      res.redirect(link);
+  });
+  console.log(fit)
+})
+
 // router.get('/test', (req, res) => {
 //   mongoClient.connect(async function(error, mongo) {
 //     let db = mongo.db('tempbase')
