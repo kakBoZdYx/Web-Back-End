@@ -56,8 +56,11 @@
                 <h1 class="name"><%= render_doctor.fullname %></h1>
                 <p></p>
             </div>
-
-            <a href="/doctors/doctorZapis/<%= render_doctor.username %>"><button class="buttons">Записаться на прием</button></a>
+            <% if(render_doctor.username == curentUser.username) { %>
+                <a href="/doctors/<%= render_doctor.username%>/acceptZapis"><button class="buttons">Проверить свои записи</button></a>
+            <% } else if(curentUser.role != 'doctor') { %>
+                <a href="/doctors/doctorZapis/<%= render_doctor.username %>"><button class="buttons">Записаться на прием</button></a>
+            <% } %>
 
             <!-- <div class="rank">
                 <div class="rating">
@@ -109,14 +112,18 @@
                     </li>
                 </ul>
             </div>
-            <form action="/doctors/doctorProfile/addReview/<%= render_doctor.username%>" method="post">
-                <textarea class="review-text-main" name="review" id="" cols="30" rows="5" placeholder="Напишите отзыв о враче!"></textarea>
-                <button type="submit" class="buttons" style="margin-top: 10px; width: 80%;">Отправить</button>
-            </form>
+            <% if(curentUser.username == render_doctor.username){ %> 
+                <h1 style="font-size: 36pt">Отзывы о вас</h1>
+            <% } else { %>
+                <form action="/doctors/doctorProfile/addReview/<%= render_doctor.username%>" method="post">
+                    <textarea class="review-text-main" name="review" id="" cols="30" rows="5" placeholder="Напишите отзыв о враче!"></textarea>
+                    <button type="submit" class="buttons" style="margin-top: 10px; width: 80%;">Отправить</button>
+                </form>
+            <% } %>
         </section>
     </div>
     <% render_doctor.otziv.forEach(review => { %>
-    <div class="review-text" style="margin-top: 10px;">
+    <div class="review-text" style="margin-top: 5px;">
         <h4>Автор: <%= review.author%></h4>
         <span><%= review.otziv%></span>
     </div>

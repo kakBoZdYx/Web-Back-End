@@ -45,17 +45,14 @@ router.get('/', (req, res) => {
 
 
 router.get('/doctorProfile/:username', (req, res) => {
-  var curentUser = req.session.user.username
-  var temp_doctor = req.params.username;
+    var curentUser = req.session.user
+    var temp_doctor = req.params.username;
   mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');  
       let doccoll = db.collection('doctors');
+
       let render_doctor = await doccoll.findOne({'username': temp_doctor});
-        if(curentUser != undefined) {
             res.render('doctorProfile', {render_doctor, curentUser})
-        } else {
-            res.render('doctorProfile', {render_doctor})
-        }
   });
 })
 
@@ -178,7 +175,7 @@ router.get('/reset', (req, res) => {
   });
 })
 
-router.get('/test', (req, res) => {
+router.get('/patients', (req, res) => {
   mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');
       let coll = db.collection('users');
@@ -186,5 +183,7 @@ router.get('/test', (req, res) => {
       res.render('test', {users});
   });
 })
+
+router.get('')
 
 module.exports = router

@@ -95,9 +95,8 @@ router.get('/login', (req, res) => {
             if((await coll.findOne({"username" : username})).password == password) {
                 req.session.auth = true
                 req.session.user = userData
-                req.session.userrole = userData.role
                 
-                if(req.session.userrole == 'admin'){
+                if(req.session.user.role == 'admin'){
                     res.redirect('/admin')
                 } else {
                     res.redirect('/user/profile')
@@ -116,7 +115,7 @@ router.get('/login', (req, res) => {
 router.get('/profile', (req, res) => {
     if(!req.session.auth || req.session.auth == false) {
         res.redirect('/user/login')
-    } else {
+    } else if(req.session.auth == true && req.session.user.role == 'user'){
         var userData = req.session.user
         var curentUser = req.session.user.username
         if(curentUser != undefined) {
@@ -125,6 +124,9 @@ router.get('/profile', (req, res) => {
             res.render('profile', {userData}) 
         }
     }
+    else if(req.session.auth == true && req.session.user.role == 'doctor') {
+        res.redirect('/doctors/doctorProfile/' + req.session.user.username) 
+    } 
 })
 
 router.get('/logout', (req, res) => {
@@ -135,10 +137,13 @@ router.get('/logout', (req, res) => {
 router.get('/profile/:x', (req, res) => {
     if(!req.session.auth || req.session.auth == false) {
         res.redirect('/user/login')
-    } else {
+    } else if (req.session.user.role == 'doctor') {
+        res.redirect('/user/profile')
+    }
+    else {
         var target = req.params.x
         let userData
-        var curentUser = req.session.user.username
+        var curentUser = req.session.user
         mongoClient.connect(async function(error, mongo){
             let db = mongo.db('tempbase');
             let coll = db.collection('users');

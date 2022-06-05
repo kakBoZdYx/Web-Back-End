@@ -27,7 +27,7 @@
           <li><a href="/#about">О нас</a></li>
           <li><a href="/#app">Планы</a></li>
           <li><a href="/#contact">Контакты</a></li>
-          <% if(curentUser != userData.username) { %>
+          <% if(curentUser.username != userData.username) { %>
           <% } else {  %>
           <li><a href="/user/logout">Выйти</a></li>
           <% }%> 
@@ -95,10 +95,18 @@
         <section class="timeline_about card">
             <div class="tabs">
                 <ul>
-                    <li class="about active">
+                    <li class="about">
                         <i class="ri-user-3-fill ri"></i>
                         <span>Персональные данные</span>
                     </li>
+                    <% if(curentUser.role == 'doctor') { %>
+                        <li class="about">
+                            <i class="ri-user-3-fill ri"></i>
+                            <span>Перейти в Чат</span>
+                        </li>
+                    <% } else { %>
+
+                    <% } %>
                 </ul>
             </div>
 

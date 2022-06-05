@@ -40,7 +40,7 @@ const uri = "mongodb+srv://kurivyan:123321Qwerty@cluster0.j1pyu.mongodb.net/?ret
 const mongoClient = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 router.get('/', (req, res) => {
-    if (req.session.userrole == 'admin') {
+    if (req.session.auth == true && req.session.user.role == 'admin') {
         mongoClient.connect(async function(error, mongo) {
             let db = mongo.db('tempbase');
             let coll = db.collection('users');
@@ -204,7 +204,7 @@ router.get('/feedbacks', (req, res) => {
 
         let feedbacks = await coll.find().toArray();
 
-        if(req.session.auth == true && req.session.userrole == "admin") {
+        if(req.session.auth == true && req.session.user.role == "admin") {
             res.render('feedback_watch', {feedbacks})
         }
     })
