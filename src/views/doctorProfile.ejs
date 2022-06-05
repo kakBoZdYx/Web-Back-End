@@ -47,8 +47,6 @@
         </section>
 
 
-
-
         <!-- ===== ===== User Details Sections ===== ===== -->
         <section class="userDetails card">
             <div class="userName">
@@ -56,7 +54,7 @@
                 <p></p>
             </div>
 
-            <a href="/doctors/doctorZapis/<%= render_doctor.username %>"><button class="review-text">Записаться на прием</button></a>
+            <a href="/doctors/doctorZapis/<%= render_doctor.username %>"><button class="buttons">Записаться на прием</button></a>
 
             <!-- <div class="rank">
                 <div class="rating">
@@ -72,6 +70,7 @@
         </section>
 
 
+
         <!-- ===== ===== Timeline & About Sections ===== ===== -->
         <section class="timeline_about card">
             <div class="tabs">
@@ -84,7 +83,7 @@
             </div>
 
             <div class="contact_info">
-                <h1 class="heading">Contact Information</h1>
+                <h1 class="heading">Информация</h1>
                 <ul>
                     <li class="phone">
                         <h1 class="label">Полное имя : </h1>
@@ -94,19 +93,23 @@
             </div>
 
             <div class="basic_info">
-                <h1 class="heading">Basic Information</h1>
+                <h1 class="heading">Дополнительное</h1>
                 <ul>
                     <li class="birthday">
-                        <h1 class="label">Birthday:</h1>
+                        <h1 class="label">День рождения:</h1>
                         <span class="info">Apr 1, 2004</span>
                     </li>
 
                     <li class="sex">
-                        <h1 class="label">Gender:</h1>
+                        <h1 class="label">Пол:</h1>
                         <span class="info">Female</span>
                     </li>
                 </ul>
             </div>
+            <form action="/doctors/doctorProfile/addReview/<%= render_doctor.username%>" method="post">
+                <textarea class="review-text-main" name="review" id="" cols="30" rows="5" placeholder="Напишите отзыв о враче!"></textarea>
+                <button type="submit" class="buttons" style="margin-top: 10px; width: 80%;">Отправить</button>
+            </form>
         </section>
     </div>
 </body>

@@ -512,18 +512,24 @@ body {
   color: var(--f5-color);
 }
 
-.review-text{
-  width: 80%;
-  background-color: #f0f0f0;
+
+
+.buttons{
+  font-weight: bolder;
+  font-size: 20px;
+  margin: auto;
+  background: #d4d4d4;
   padding: 10px;
+  border: none;
   border-radius: 20px;
 }
 
-
-.review-text-section{
-  font-size: 20px;
+.review-text-main{
   width: 80%;
-  background-color: #f0f0f0;
+  font-size: 20px;
+  margin: auto;
+  background: #ececec;
   padding: 10px;
+  border: none;
   border-radius: 20px;
 }
