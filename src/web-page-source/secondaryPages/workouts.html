@@ -33,7 +33,6 @@
   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
 </svg></a></li>
         </ul>
-
     </header>
 
     <section class="home" id="home">
@@ -49,9 +48,9 @@
     </section>
 
     <section class="about" id="about">
-    	  <div class="container">
+    	  <div class="container" id="shop">
     	  	  <div class="content">
-    	  	  	   <div class="box wow bounceInUp" id="shop">
+    	  	  	   <div class="box wow bounceInUp" id="openStreng">
     	  	  	   	   <div class="inner">
     	  	  	   	   	   <div class="img">
     	  	  	   	   	   	  <img src="../img/workouts_img/free-sticker-workout-4860890.png" alt="about" />
@@ -62,7 +61,7 @@
                          </div>
     	  	  	   	   </div>
     	  	  	   </div>
-    	  	  	   	<div class="box wow bounceInUp" data-wow-delay="0.2s">
+    	  	  	   	<div class="box wow bounceInUp" id="openCardio" data-wow-delay="0.2s">
     	  	  	   	   <div class="inner">
     	  	  	   	   	   <div class="img">
     	  	  	   	   	   	  <img src="../img/workouts_img/free-sticker-workout-4860755.png" alt="about" />
@@ -73,7 +72,7 @@
                          </div>
     	  	  	   	   </div>
     	  	  	   </div>
-    	  	  	   <div class="box wow bounceInUp" data-wow-delay="0.4s">
+    	  	  	   <div class="box wow bounceInUp" id="openStretch" data-wow-delay="0.4s">
     	  	  	   	   <div class="inner">
     	  	  	   	   	   <div class="img">
     	  	  	   	   	   	  <img src="../img/workouts_img/free-sticker-yoga-4961572.png" alt="about" />
@@ -88,27 +87,24 @@
     	  </div>
     </section>
 
-<section class="vid" id="vid">
-
-
-  <div class="vid ">
-<h1>    <h1 class="temp " id = "delivery">Тренировки</h1>
-    <br>
-    
-    <iframe width="330" height="250" src="https://www.youtube.com/embed/4GvG7DWe2jo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <iframe width="330" height="250" src="https://www.youtube.com/embed/LM_dcrSZolM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-    <iframe width="330" height="250" src="https://www.youtube.com/embed/i9zTWnMGOF4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <iframe width="330" height="250" src="https://www.youtube.com/embed/2gy36VixNeI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+  <div class="workout_type" id="workoutStreng" style="margin-bottom : 3%">
+    <h1>Силовые тренировки</h1>
     <iframe width="330" height="250" src="https://www.youtube.com/embed/tiMMnhLYwzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <iframe width="330" height="250" src="https://www.youtube.com/embed/6C4xVjlwddU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
     <iframe width="330" height="250" src="https://www.youtube.com/embed/6KfVfVtlcjI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-    </h1>
   </div>
-</section>
+
+  <div class="workout_type" id="workoutStretch" style="margin-bottom : 3%">
+    <h1>Кардио тренировки</h1>
+    <iframe width="330" height="250" src="https://www.youtube.com/embed/4GvG7DWe2jo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="330" height="250" src="https://www.youtube.com/embed/2gy36VixNeI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <div class="workout_type" id="workoutCardio">
+    <h1>Стретчинг и йога</h1>
+    <iframe width="330" height="250" src="https://www.youtube.com/embed/LM_dcrSZolM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="330" height="250" src="https://www.youtube.com/embed/i9zTWnMGOF4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
 
 <section class="contact" id="contact">
  <div class="container">
@@ -146,6 +142,7 @@
     </div>
  </div>
 </section>
-
-  </body>
-  </html>
+  <scrip src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script type="text/JavaScript" src="../js/workout.js"></script>
+</body>
+</html>
