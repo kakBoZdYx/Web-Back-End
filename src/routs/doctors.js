@@ -216,7 +216,7 @@ router.post('/:patientUsername/recomendationSet', (req, res) => {
 
     await coll.insertOne(tempData)
 
-    res.redirect('/user/profile/' + req.params.patientUsername)
+    res.redirect('/user/profile/' + req.params.patientUsername - "/")
 });
 })
 
