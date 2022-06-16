@@ -195,7 +195,7 @@ router.get('/patients', (req, res) => {
   mongoClient.connect(async function(error, mongo) {
       let db = mongo.db('tempbase');
       let coll = db.collection('users');
-      let users = await coll.find().toArray();
+      let users = await coll.find({'role' : "user"}).toArray();
       res.render('test', {users});
   });
 })
